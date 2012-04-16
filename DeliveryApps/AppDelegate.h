@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class AppFactory;
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    AppFactory *appFactory;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
+- (AppFactory*) getAppFactory;
 @end
