@@ -12,4 +12,5 @@
 + (void)scrollScreenBeginEditingInView:(UIView*)view inTextField:(UITextField*)textField show:(BOOL)isShow;
 + (CGFloat)scrollScreenBeginEditingInView:(UIView*)view inTextField:(UITextField*)textField withTableView:(UITableView*)table show:(BOOL)isShow;
 + (void)markScreenInView:(UIView*)view show:(BOOL)isShow;
++ (NSString*)decodeEntities:(NSString*)html;
 @end

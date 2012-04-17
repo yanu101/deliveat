@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Protocols.h"
-
-@interface BuddyItem : UIView<IComponent> {
+#import "Protocols.h"
+#import "Vendor.h"
+@interface BuddyItem : UIView<IComponent, IImageRuntimeStorageListener> {
     id cookie;
 }
 @property (strong, nonatomic) id<IFieldChangeListener> delegate;
 @property (strong, nonatomic) IBOutlet UIButton* avatarImageButton;
 @property (strong, nonatomic) IBOutlet UILabel *labelName;
+@property (strong, nonatomic) Vendor* vendor;
+
+- (void) commit;
 @end

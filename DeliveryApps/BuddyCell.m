@@ -9,7 +9,7 @@
 #import "BuddyCell.h"
 #import "Resource.h"
 #import "BuddyItem.h"
-
+#import "Vendor.h"
 @implementation BuddyCell
 
 
@@ -42,11 +42,13 @@
         for(int j=0;j<2;j++) {
             xItem = (BUDDY_ITEM_MARGIN)*(j+1) +  j*(WIDTH_CELL_ITEM);
             if(i >= n) break;
-//            XMPPJID* jid = (XMPPJID*)[dataCollection objectAtIndex:i];
+            Vendor* vendor = (Vendor*)[dataCollection objectAtIndex:i];
             BuddyItem *view = [[BuddyItem alloc] initWithFrame:CGRectMake(xItem, yItem, WIDTH_CELL_ITEM, HEIGHT_CELL_ITEM)];
             view.delegate = delegate;
-//            view.jid = jid;
-            view.labelName.text = @"Label";            
+            view.vendor = vendor;
+            [view setCookie:vendor];
+            view.labelName.text = vendor.name;  
+            [view commit];
             [[self contentView] addSubview:view];
             i++;
             

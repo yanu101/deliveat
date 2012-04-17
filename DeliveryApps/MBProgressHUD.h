@@ -304,6 +304,7 @@ typedef enum {
  * animations while disappearing.
  */
 - (void)show:(BOOL)animated;
+- (void)done;
 
 /** 
  * Hide the HUD, this still calls the hudWasHidden delegate. This is the counterpart of the hide: method. Use it to

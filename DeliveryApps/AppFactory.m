@@ -13,13 +13,14 @@
 #import "API.h"
 #import "Util.h"
 @implementation AppFactory
-@synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary;
+@synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary, vendors;
 
 - (ImageRuntimeStorage*) getImageRuntimeStorage {
+    NSLog(@"ImageRuntimeStorage : %@", imageRuntimeStorage);
     if(!imageRuntimeStorage) {
         imageRuntimeStorage = [[ImageRuntimeStorage alloc] init];
         imageRuntimeStorage.delegateCollection = [[NSMutableDictionary alloc] init];
-        imageRuntimeStorage.imageRuntimeStorageCollection = [[NSMutableArray alloc] init];
+        imageRuntimeStorage.imageRuntimeStorageCollection = [[NSMutableDictionary alloc] init];
         [imageRuntimeStorage performSelectorInBackground:@selector(runLooping) withObject:nil];
     }
     return imageRuntimeStorage;

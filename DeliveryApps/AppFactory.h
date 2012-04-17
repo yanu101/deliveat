@@ -27,6 +27,7 @@
 @property (nonatomic, readonly, getter = getAPI) API *api;
 @property (nonatomic, readonly, getter = getUtil) Util *util;
 @property (nonatomic, strong) NSMutableDictionary* messageDictionary;
+@property (nonatomic, strong) NSMutableArray* vendors;
 
 //- (ImageRuntimeStorage*) getImageRuntimeStorage;
 //- (Resource*) getResource;

@@ -8,10 +8,14 @@
 
 #import "BuddyItem.h"
 #import "Resource.h"
+#import "ImageRuntimeStorage.h"
+#import "AppFactory.h"
+#import "AppDelegate.h"
+
 #define LABEL_HEIGHT 21
 @implementation BuddyItem
 
-@synthesize avatarImageButton, labelName, delegate;
+@synthesize avatarImageButton, labelName, delegate, vendor;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -53,9 +57,28 @@
     cookie = cookie_;
 }
 - (id)getCookie {
-    return nil;
+    return cookie;
 }
 - (void) avatarImageButtonAction {
     [self.delegate fieldChanged:self];
+}
+- (void) commit {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppFactory* appFactory = [appDelegate getAppFactory];
+    
+    ImageRuntimeStorage *imgRuntimeStg = [appFactory getImageRuntimeStorage];
+    
+    NSString* url = [NSString stringWithFormat:@"http://www.deliveat.com:3000%@",self.vendor.thumbAvatarUrl];
+    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:url andImageType:0 andDelegate:self];
+    NSLog(@"Data Image URL: %@", url);
+//    if(dataImg) {
+//        UIImage* img = [UIImage imageWithData:dataImg];
+//        [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
+//    }
+}
+- (void)imageFetched:(NSData *)imageData {
+    UIImage* img = [UIImage imageWithData:imageData];
+    [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
+    
 }
 @end

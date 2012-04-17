@@ -1,31 +1,26 @@
 //
-//  HomeViewController.m
+//  VendorDashboardViewController.m
 //  DeliveryApps
 //
-//  Created by Yanuar Rahman on 4/13/12.
+//  Created by Yanuar Rahman on 4/17/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "BuddyCell.h"
-#import "Resource.h"
 #import "VendorDashboardViewController.h"
-#import "AppFactory.h"
-#import "AppDelegate.h"
-
-@interface HomeViewController ()
+#import "VendorDashboardCellSubMenu.h"
+#import "VendorDashboardCellTop.h"
+#import "Vendor.h"
+@interface VendorDashboardViewController ()
 
 @end
 
-@implementation HomeViewController
-@synthesize dataCollection;
-int n = 0;
+@implementation VendorDashboardViewController
+@synthesize vendor;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        
     }
     return self;
 }
@@ -33,13 +28,6 @@ int n = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    AppFactory* appFactory = [appDelegate getAppFactory];
-    dataCollection = appFactory.vendors;
-//    dataCollection = [[NSMutableArray alloc] initWithCapacity:9];
-//    for(int i=0;i<9;i++) {
-//        [dataCollection addObject:@"Label"];
-//    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,32 +61,35 @@ int n = 0;
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 4;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    n = [dataCollection count];
-    int modulo = n % 2;
-    int div = [dataCollection count]/2;
-    int h = (HEIGHT_CELL_ITEM+BUDDY_ITEM_MARGIN) * (modulo == 0 ? div : div + 1);
-    h+=BUDDY_ITEM_MARGIN;
-    return h==0?HEIGHT_CELL_ITEM : h;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    if(indexPath.row == 0) {
+        return 207;
+    } else {
+        return 53;
+    }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BuddyCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    BuddyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.delegate = self;
-    cell.dataCollection = self.dataCollection;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.clipsToBounds = NO;
-    cell.contentView.clipsToBounds = NO;
-    [cell buildUI];
-    [cell layoutSubviews];
-    // Configure the cell...
+    NSString *CellIdentifier = @"CellTop";
+    if(indexPath.row == 0) {
+        VendorDashboardCellTop* cellTop = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cellTop.vendor = vendor;
+        [cellTop commit];
+//        cellTop.vendorLogo.image = 
+        cellTop.labelVendor.text = vendor.name;
+        return cellTop;
+    } else {
+        NSArray* arrayMenu = [[NSArray alloc] initWithObjects:@"Menu", @"Review", @"Promo", nil];
+        CellIdentifier = @"CellMenu";
+        VendorDashboardCellSubMenu *cellMenu = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cellMenu.labelMenu.text = [arrayMenu objectAtIndex:indexPath.row-1];
+        return cellMenu;
+    }
     
-    return cell;
 }
 
 /*
@@ -152,21 +143,5 @@ int n = 0;
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"VendorDashboard"])
-    {
-        
-        // Get reference to the destination view controller
-        VendorDashboardViewController *vc = [segue destinationViewController];
-        vc.vendor = sender;
-        // Pass any objects to the view controller here, like...
-        
-        
-    }
-}
 
-#pragma mark - IFieldChangeListener delegate
--(void)fieldChanged:(id<IComponent>)component {
-    [self performSegueWithIdentifier:@"VendorDashboard" sender:[component getCookie]];
-}
 @end

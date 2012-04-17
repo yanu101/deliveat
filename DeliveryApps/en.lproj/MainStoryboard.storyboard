@@ -25,9 +25,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <segue destination="3N7-Xb-EKV" kind="modal" identifier="Login" id="ebR-ps-sYl"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="71A-g9-vyh">
                                 <rect key="frame" x="20" y="101" width="286" height="31"/>
@@ -48,7 +45,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signupAction:" destination="2" eventType="touchUpInside" id="0HS-WO-i2C"/>
-                                    <segue destination="x4a-FL-Q7N" kind="modal" id="Vxj-ZV-x3y"/>
+                                    <segue destination="x4a-FL-Q7N" kind="modal" identifier="Signup" id="Vxj-ZV-x3y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lNw-G0-Qp8">
@@ -63,12 +60,31 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginAction:" destination="2" eventType="touchUpInside" id="2Qm-Ih-Rho"/>
+                                    <action selector="loginAction:" destination="2" eventType="touchUpInside" id="zB9-gT-Xv3"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qko-64-OcP">
+                                <rect key="frame" x="20" y="185" width="110" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="LoginSegue">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3N7-Xb-EKV" kind="modal" identifier="LoginSegue" id="n5Y-sR-Gm9"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="password" destination="71A-g9-vyh" id="vnn-a4-ZEd"/>
+                        <outlet property="username" destination="Yyb-xw-bf2" id="spl-TA-6ad"/>
+                    </connections>
                 </viewController>
             </objects>
         </scene>
@@ -114,7 +130,7 @@
                     </tableView>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="-2" y="540"/>
+            <point key="canvasLocation" x="84" y="541"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="hry-XT-3HY">
@@ -135,7 +151,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="Okg-h3-MOV" kind="push" identifier="MenuItemSeg" id="We7-gk-H5F"/>
+                                    <segue destination="H5O-bW-K4a" kind="push" identifier="VendorDashboard" id="zYV-7n-O0g"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -147,7 +163,80 @@
                     <navigationItem key="navigationItem" id="r44-50-gUH"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1481" y="-94"/>
+            <point key="canvasLocation" x="1489" y="-105"/>
+        </scene>
+        <!--Vendor Dashboard View Controller-->
+        <scene sceneID="SpW-Ww-u94">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bqN-Z0-HDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="H5O-bW-K4a" customClass="VendorDashboardViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="207" sectionHeaderHeight="22" sectionFooterHeight="22" id="xTp-qA-hdr">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellTop" rowHeight="207" id="oGF-ct-W3O" customClass="VendorDashboardCellTop">
+                                <rect key="frame" x="0.0" y="22" width="320" height="207"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="206"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nKx-tf-bWu">
+                                            <rect key="frame" x="20" y="20" width="285" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="ft7-gV-WZf">
+                                            <rect key="frame" x="20" y="49" width="280" height="137"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="labelVendor" destination="nKx-tf-bWu" id="FPx-RQ-iUy"/>
+                                    <outlet property="vendorLogo" destination="ft7-gV-WZf" id="cvX-HJ-Wbv"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellMenu" rowHeight="53" id="Tms-qD-A8H" customClass="VendorDashboardCellSubMenu">
+                                <rect key="frame" x="0.0" y="229" width="320" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="h80-eg-DIv">
+                                            <rect key="frame" x="20" y="15" width="240" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="0kC-8N-XUR">
+                                            <rect key="frame" x="268" y="10" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="icon" destination="0kC-8N-XUR" id="TTZ-Z5-bqD"/>
+                                    <outlet property="labelMenu" destination="h80-eg-DIv" id="mc9-bx-ast"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="H5O-bW-K4a" id="iNf-77-mfg"/>
+                            <outlet property="delegate" destination="H5O-bW-K4a" id="auH-NX-aZW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="WPI-St-Qqt"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1870" y="-96"/>
         </scene>
         <!--Menu Item View Controller-->
         <scene sceneID="4yD-0k-FmV">
@@ -155,7 +244,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X74-u4-O2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Okg-h3-MOV" customClass="MenuItemViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="345" sectionHeaderHeight="22" sectionFooterHeight="22" id="jA8-3Y-bMq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -221,7 +310,7 @@
                     <navigationItem key="navigationItem" id="BhG-2w-g5X"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1880" y="-94"/>
+            <point key="canvasLocation" x="5264" y="182"/>
         </scene>
         <!--List Menu View Controller-->
         <scene sceneID="Nue-Sg-lZv">
@@ -270,7 +359,7 @@
                     </tableView>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2221" y="-94"/>
+            <point key="canvasLocation" x="5479" y="-27"/>
         </scene>
         <!--View Controller - Item 2-->
         <scene sceneID="ODX-Tr-6EH">
@@ -280,6 +369,20 @@
                     <view key="view" contentMode="scaleToFill" id="Rhm-ux-ZPY">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YnS-zW-V0H">
+                                <rect key="frame" x="228" y="20" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Push">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="49J-FA-5XU"/>
@@ -292,6 +395,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGK-l1-MKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController definesPresentationContext="YES" id="3N7-Xb-EKV" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="fhL-RA-5Vs"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8u3-NA-tmG">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -299,31 +403,31 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2Cw-WL-4cT" kind="relationship" relationship="viewControllers" id="Q5j-UZ-ttN"/>
+                        <segue destination="uiV-65-G0v" kind="relationship" relationship="viewControllers" id="PcU-ZQ-MVD"/>
                         <segue destination="KDL-CP-RXv" kind="relationship" relationship="viewControllers" id="qkL-rB-hGN"/>
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="472" y="55"/>
+            <point key="canvasLocation" x="407" y="-82"/>
         </scene>
-        <!--Navigation Controller - Home-->
-        <scene sceneID="tFT-ow-BeA">
+        <!--Navigation Controller - Item-->
+        <scene sceneID="7Q6-Qf-Slq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gow-8X-xge" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="2Cw-WL-4cT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="mRx-AO-odV"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uWQ-R9-Z22" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="uiV-65-G0v" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="TaX-0z-evP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="56g-bk-oCZ">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XZ4-zK-w75">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bBZ-TV-UIF" kind="relationship" relationship="rootViewController" id="ilg-aH-pMq"/>
+                        <segue destination="bBZ-TV-UIF" kind="relationship" relationship="rootViewController" id="gU8-uy-bwb"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="955" y="-94"/>
+            <point key="canvasLocation" x="963" y="-105"/>
         </scene>
     </scenes>
     <resources>
@@ -378,6 +482,23 @@
                 <relationship kind="outlet" name="leftButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="rightButton" candidateClass="UIBarButtonItem"/>
             </relationships>
+        </class>
+        <class className="VendorDashboardCellSubMenu" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VendorDashboardCellSubMenu.h"/>
+            <relationships>
+                <relationship kind="outlet" name="icon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="labelMenu" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="VendorDashboardCellTop" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VendorDashboardCellTop.h"/>
+            <relationships>
+                <relationship kind="outlet" name="labelVendor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vendorLogo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="VendorDashboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VendorDashboardViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

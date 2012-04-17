@@ -11,9 +11,9 @@
 #import "HTTPRequest.h"
 
 @interface ImageRuntimeStorage : NSObject {
-    NSMutableArray* imageRuntimeStorageCollection;
+    NSMutableDictionary* imageRuntimeStorageCollection;
 }
-@property (strong, nonatomic) NSMutableArray* imageRuntimeStorageCollection;
+@property (strong, nonatomic) NSMutableDictionary* imageRuntimeStorageCollection;
 @property (strong, nonatomic) NSMutableDictionary* delegateCollection;
 
 - (NSData*) getImageWithImageURL:(NSString*)imageUrl andImageType:(int)imageType andDelegate:(id<IImageRuntimeStorageListener>) delegate;

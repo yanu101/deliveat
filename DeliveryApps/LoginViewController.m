@@ -10,14 +10,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Utility.h"
 #import "MBProgressHUD.h"
-
+#import "VendorParser.h"
 #import "HTTPRequest.h"
 #import "APIThread.h"
 #import "AppFactory.h"
 #import "HTTPResult.h"
 #import "HTTPRequestParameter.h"
 #import "AppDelegate.h"
-
+#import "HomeViewController.h"
+#import "Vendor.h"
 @interface LoginViewController ()
 
 @end
@@ -25,6 +26,7 @@
 @implementation LoginViewController
 
 @synthesize username, password, buttonLogin, sampleWebView;
+APIThread* getVendorThread;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,37 +37,40 @@
     return self;
 }
 - (void)loginAction:(id)sender {
-//    if([username.text length] == 0) {
-//        return;
-//    }
+    if([username.text length] == 0 || [password.text length] == 0) {
+        return;
+    }
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     AppFactory* appFactory = [appDelegate getAppFactory];
-    APIThread* apiThread = [[APIThread alloc] init];
-    apiThread.delegate = self;
+    getVendorThread = [[APIThread alloc] init];
+    getVendorThread.delegate = self;
     HTTPRequestParameter* param = [[HTTPRequestParameter alloc] init];
     param.api = [appFactory getAPI];
     
-    [apiThread performSelectorInBackground:@selector(getVendors:) withObject:param];
-    
-    [self performSegueWithIdentifier:@"Login" sender:@""];
-    NSLog(@"masuk sini");
+    [getVendorThread performSelectorInBackground:@selector(getVendors:) withObject:param];
+    loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];	
+	loading.labelText = @"Sign in";
+    [loading show:YES];
+    [username resignFirstResponder];
+    [password resignFirstResponder];
 }
 - (void)signupAction:(id)sender {
     
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"Login"])
+    if ([[segue identifier] isEqualToString:@"LoginSegue"])
     {
-        return;
-        // Get reference to the destination view controller
-                
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppFactory* appFactory = [appDelegate getAppFactory];
+        
+        appFactory.vendors = sender;
     }
 
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
 //    sampleWebView.delegate = self;
 //    [sampleWebView loadHTMLString:@"<html><body style=\"background-color: #ff0000; color: #FFFFFF; font-family: Helvetica; font-size: 10pt; width: 300px; word-wrap: break-word;\">YANUAR RAHMAN<br><a href=\"http://www.google.com\">Google</a></body></html>" baseURL:nil];
 //    [sampleWebView layer].cornerRadius = 10;
@@ -92,9 +97,16 @@
 - (void) apiThread:(APIThread*)apiThread failed:(NSError *) error {
     
 }
+- (void) loginSuccess:(id)sender {
+    [self performSegueWithIdentifier:@"LoginSegue" sender:sender];
+}
 - (void) apiThread:(APIThread*)apiThread receivedResult:(HTTPResult*)result {
-    NSString* dataStr = [NSString stringWithUTF8String:[result.data bytes]];
-    
-    NSLog(@"DAPET data nya gak ya : %d  %@", [result.data length], dataStr);
+    [loading show:NO];
+    [loading done];
+    if(apiThread == getVendorThread) {
+        
+        NSMutableArray* dataVendors = result.result;
+        [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:dataVendors waitUntilDone:YES];
+    }
 }
 @end

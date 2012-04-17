@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Protocols.h"
-@interface LoginViewController : UIViewController <UIWebViewDelegate, IAPIThread>
+@class MBProgressHUD;
+@interface LoginViewController : UIViewController <UIWebViewDelegate, IAPIThread> {
+    MBProgressHUD* loading;
+}
 
 @property (strong, nonatomic) IBOutlet UITextField* username;
 @property (strong, nonatomic) IBOutlet UITextField* password;

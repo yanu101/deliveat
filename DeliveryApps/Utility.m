@@ -140,19 +140,40 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     }
     
 }
-+ (void)markScreenInView:(UIView*)view show:(BOOL)isShow {
-    
-    if(isShow) {
-        CGRect windowFrame = view.frame;
-        
-        CALayer *sublayer = [CALayer layer];
-        sublayer.backgroundColor = [UIColor colorWithRed:.1 green:.1 blue:.1 alpha:.4].CGColor;
-        sublayer.frame = CGRectMake(0, 0, windowFrame.size.width-0, windowFrame.size.height-0);
-        [view.layer addSublayer:sublayer];
-    } else {
-        NSArray* sublayers = view.layer.sublayers;
-        CALayer* sublayer_ = [sublayers objectAtIndex:[sublayers count]-1];
-        [sublayer_ removeFromSuperlayer];
-    }
++(NSString*)decodeEntities:(NSString*)html {
+	@try {
+		if(!html || (html == [NSNull null])) {
+            return @"";
+		}
+		NSMutableString *s = [NSMutableString stringWithString:html];
+		[s replaceOccurrencesOfString:@"&lt;" withString:@"<" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&gt;" withString:@">" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&nbsp;" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&amp;" withString:@"&" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&auml;" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&ouml;" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&quot;" withString:@"\'" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		[s replaceOccurrencesOfString:@"&#xd;" withString:@"\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+		return [NSString stringWithString:s];
+	}
+	@catch (NSException * e) {
+		return html;
+	}
+	
 }
+//+ (void)markScreenInView:(UIView*)view show:(BOOL)isShow {
+//    
+//    if(isShow) {
+//        CGRect windowFrame = view.frame;
+//        
+//        CALayer *sublayer = [CALayer layer];
+//        sublayer.backgroundColor = [UIColor colorWithRed:.1 green:.1 blue:.1 alpha:.4].CGColor;
+//        sublayer.frame = CGRectMake(0, 0, windowFrame.size.width-0, windowFrame.size.height-0);
+//        [view.layer addSublayer:sublayer];
+//    } else {
+//        NSArray* sublayers = view.layer.sublayers;
+//        CALayer* sublayer_ = [sublayers objectAtIndex:[sublayers count]-1];
+//        [sublayer_ removeFromSuperlayer];
+//    }
+//}
 @end

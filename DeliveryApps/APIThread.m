@@ -11,6 +11,9 @@
 #import "HTTPRequestParameter.h"
 #import "HTTPResult.h"
 #import "API.h"
+#import "Vendor.h"
+#import "VendorParser.h"
+
 @implementation APIThread
 @synthesize delegate;
 
@@ -29,12 +32,21 @@
 }
 - (void) getVendors:(HTTPRequestParameter*)param {
     HTTPResult* result = [param.api getGeneralImage:@"http://202.129.191.2:3000/vendors.json"];
+    
+    
     if(result.error) {
         if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
             [delegate apiThread:self failed:result.error];
         }
     } else {
+        
+        
         if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+            
+            NSString* dataStr = [NSString stringWithUTF8String:[result.data bytes]];
+            NSMutableArray* array = [VendorParser getVendors:dataStr];
+            result.result = array;
+            
             [delegate apiThread:self receivedResult:result];
         } 
     }
