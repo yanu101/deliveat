@@ -49,6 +49,10 @@
 		04020975153C1F790028462F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402096F153C1F790028462F /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		04020979153C205C0028462F /* Vendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04020978153C205C0028462F /* Vendor.m */; };
 		0402097C153C206E0028462F /* VendorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402097B153C206E0028462F /* VendorParser.m */; };
+		040F563D153E936300DE8231 /* VendorItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F563C153E936300DE8231 /* VendorItemListViewController.m */; };
+		040F5641153E937B00DE8231 /* VendorItemListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F5640153E937B00DE8231 /* VendorItemListCell.m */; };
+		040F5644153EA24100DE8231 /* VendoerMenuItemParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F5643153EA24000DE8231 /* VendoerMenuItemParser.m */; };
+		040F5647153EA24F00DE8231 /* VendorMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F5646153EA24F00DE8231 /* VendorMenuItem.m */; };
 		0421296D153D493E00BB6FA5 /* VendorDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0421296C153D493E00BB6FA5 /* VendorDashboardViewController.m */; };
 		04212970153D496600BB6FA5 /* VendorDashboardCellTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0421296F153D496600BB6FA5 /* VendorDashboardCellTop.m */; };
 		04212973153D498100BB6FA5 /* VendorDashboardCellSubMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04212972153D498100BB6FA5 /* VendorDashboardCellSubMenu.m */; };
@@ -137,6 +141,14 @@
 		04020978153C205C0028462F /* Vendor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vendor.m; sourceTree = "<group>"; };
 		0402097A153C206E0028462F /* VendorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorParser.h; sourceTree = "<group>"; };
 		0402097B153C206E0028462F /* VendorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorParser.m; sourceTree = "<group>"; };
+		040F563B153E936300DE8231 /* VendorItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorItemListViewController.h; sourceTree = "<group>"; };
+		040F563C153E936300DE8231 /* VendorItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorItemListViewController.m; sourceTree = "<group>"; };
+		040F563F153E937A00DE8231 /* VendorItemListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorItemListCell.h; sourceTree = "<group>"; };
+		040F5640153E937B00DE8231 /* VendorItemListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorItemListCell.m; sourceTree = "<group>"; };
+		040F5642153EA24000DE8231 /* VendoerMenuItemParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendoerMenuItemParser.h; sourceTree = "<group>"; };
+		040F5643153EA24000DE8231 /* VendoerMenuItemParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendoerMenuItemParser.m; sourceTree = "<group>"; };
+		040F5645153EA24F00DE8231 /* VendorMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorMenuItem.h; sourceTree = "<group>"; };
+		040F5646153EA24F00DE8231 /* VendorMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorMenuItem.m; sourceTree = "<group>"; };
 		0421296B153D493E00BB6FA5 /* VendorDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorDashboardViewController.h; sourceTree = "<group>"; };
 		0421296C153D493E00BB6FA5 /* VendorDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorDashboardViewController.m; sourceTree = "<group>"; };
 		0421296E153D496600BB6FA5 /* VendorDashboardCellTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorDashboardCellTop.h; sourceTree = "<group>"; };
@@ -267,6 +279,8 @@
 				0421296F153D496600BB6FA5 /* VendorDashboardCellTop.m */,
 				04212971153D498100BB6FA5 /* VendorDashboardCellSubMenu.h */,
 				04212972153D498100BB6FA5 /* VendorDashboardCellSubMenu.m */,
+				040F563F153E937A00DE8231 /* VendorItemListCell.h */,
+				040F5640153E937B00DE8231 /* VendorItemListCell.m */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -344,6 +358,8 @@
 			children = (
 				04020977153C205C0028462F /* Vendor.h */,
 				04020978153C205C0028462F /* Vendor.m */,
+				040F5645153EA24F00DE8231 /* VendorMenuItem.h */,
+				040F5646153EA24F00DE8231 /* VendorMenuItem.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -384,6 +400,8 @@
 			children = (
 				0402097A153C206E0028462F /* VendorParser.h */,
 				0402097B153C206E0028462F /* VendorParser.m */,
+				040F5642153EA24000DE8231 /* VendoerMenuItemParser.h */,
+				040F5643153EA24000DE8231 /* VendoerMenuItemParser.m */,
 			);
 			name = parser;
 			sourceTree = "<group>";
@@ -393,6 +411,8 @@
 			children = (
 				0421296B153D493E00BB6FA5 /* VendorDashboardViewController.h */,
 				0421296C153D493E00BB6FA5 /* VendorDashboardViewController.m */,
+				040F563B153E936300DE8231 /* VendorItemListViewController.h */,
+				040F563C153E936300DE8231 /* VendorItemListViewController.m */,
 			);
 			name = vendor_dashboard;
 			sourceTree = "<group>";
@@ -499,6 +519,10 @@
 				0421296D153D493E00BB6FA5 /* VendorDashboardViewController.m in Sources */,
 				04212970153D496600BB6FA5 /* VendorDashboardCellTop.m in Sources */,
 				04212973153D498100BB6FA5 /* VendorDashboardCellSubMenu.m in Sources */,
+				040F563D153E936300DE8231 /* VendorItemListViewController.m in Sources */,
+				040F5641153E937B00DE8231 /* VendorItemListCell.m in Sources */,
+				040F5644153EA24100DE8231 /* VendoerMenuItemParser.m in Sources */,
+				040F5647153EA24F00DE8231 /* VendorMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

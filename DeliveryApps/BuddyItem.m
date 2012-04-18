@@ -68,13 +68,12 @@
     
     ImageRuntimeStorage *imgRuntimeStg = [appFactory getImageRuntimeStorage];
     
-    NSString* url = [NSString stringWithFormat:@"http://www.deliveat.com:3000%@",self.vendor.thumbAvatarUrl];
-    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:url andImageType:0 andDelegate:self];
-    NSLog(@"Data Image URL: %@", url);
-//    if(dataImg) {
-//        UIImage* img = [UIImage imageWithData:dataImg];
-//        [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
-//    }
+    
+    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:self.vendor.thumbAvatarUrl andImageType:0 andDelegate:self];
+    if(dataImg) {
+        UIImage* img = [UIImage imageWithData:dataImg];
+        [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
+    }
 }
 - (void)imageFetched:(NSData *)imageData {
     UIImage* img = [UIImage imageWithData:imageData];

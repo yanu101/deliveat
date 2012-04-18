@@ -16,6 +16,9 @@
     NSError *error;
     NSData *jsonData = [stringPayload dataUsingEncoding:NSUTF8StringEncoding];
 //    NSLog(@"json data : %@", jsonData);
+    if(!jsonData) {
+        return nil;
+    }
     NSArray *items = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
 //    NSLog(@"Error : %@", error.description);
 //    NSLog(@"items count : %d", [items count]);

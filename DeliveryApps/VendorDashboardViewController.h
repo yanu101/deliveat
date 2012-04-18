@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Protocols.h"
 @class Vendor;
-@interface VendorDashboardViewController : UITableViewController
+@class MBProgressHUD;
+@class APIThread;
+@interface VendorDashboardViewController : UITableViewController<IAPIThread> {
+    MBProgressHUD *loading;
+    APIThread *getMenuItemThread;
+}
 @property (strong, nonatomic) Vendor* vendor;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ImageRuntimeStorage.h"
-
+#import "API.h"
 @implementation ImageRuntimeStorage
 #define IMAGE_AVATAR 1
 #define IMAGE_GENERAL 2
@@ -15,8 +15,6 @@
 @synthesize imageRuntimeStorageCollection, delegateCollection;
 
 - (NSData*) getImageWithImageURL:(NSString*)imageUrl andImageType:(int)imageType andDelegate:(id<IImageRuntimeStorageListener>) delegate {
-    
-    NSLog(@"\n\n\nimageRuntimeStorageCollection : %@\n\n\n", imageRuntimeStorageCollection);
     
     NSData *imageData = [imageRuntimeStorageCollection valueForKey:imageUrl];
     if(imageData) {
@@ -41,7 +39,10 @@
                 if(![discardedItems containsObject:imageUrl]) {
                     [discardedItems addObject:imageUrl];
                 }
-                NSURL* url = [[NSURL alloc] initWithString:imageUrl];
+                NSString* urlStr = [NSString stringWithFormat:@"%@%@",API_BASE,imageUrl];
+                
+                NSURL* url = [[NSURL alloc] initWithString:urlStr];
+                
                 NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:TIME_OUT];
                 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
                 
@@ -65,7 +66,7 @@
                 [delegateCollection removeObjectForKey:key];
             }
         } else {
-            [NSThread sleepForTimeInterval:1.0];
+            [NSThread sleepForTimeInterval:5.0];
         }
     }
 }

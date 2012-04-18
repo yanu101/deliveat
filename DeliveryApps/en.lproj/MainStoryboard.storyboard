@@ -175,11 +175,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellTop" rowHeight="207" id="oGF-ct-W3O" customClass="VendorDashboardCellTop">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellTop" rowHeight="207" id="oGF-ct-W3O" customClass="VendorDashboardCellTop">
                                 <rect key="frame" x="0.0" y="22" width="320" height="207"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="206"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="206"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nKx-tf-bWu">
@@ -199,13 +199,14 @@
                                 <connections>
                                     <outlet property="labelVendor" destination="nKx-tf-bWu" id="FPx-RQ-iUy"/>
                                     <outlet property="vendorLogo" destination="ft7-gV-WZf" id="cvX-HJ-Wbv"/>
+                                    <segue destination="J5h-Aw-57S" kind="push" identifier="VendorItem" id="ei4-9v-TFi"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellMenu" rowHeight="53" id="Tms-qD-A8H" customClass="VendorDashboardCellSubMenu">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellMenu" rowHeight="53" id="Tms-qD-A8H" customClass="VendorDashboardCellSubMenu">
                                 <rect key="frame" x="0.0" y="229" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="h80-eg-DIv">
@@ -237,6 +238,61 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1870" y="-96"/>
+        </scene>
+        <!--Vendor Item List View Controller-->
+        <scene sceneID="CLd-gw-7E4">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJW-sC-EJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="J5h-Aw-57S" customClass="VendorItemListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" id="zgs-Zk-gcz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="SUy-qZ-xQu" customClass="VendorItemListCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="YYo-5f-1Db">
+                                            <rect key="frame" x="20" y="10" width="52" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="yQc-ra-fBT">
+                                            <rect key="frame" x="80" y="10" width="220" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="rOF-9M-fYQ">
+                                            <rect key="frame" x="80" y="39" width="220" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="desc" destination="rOF-9M-fYQ" id="Xsm-kJ-CAd"/>
+                                    <outlet property="image" destination="YYo-5f-1Db" id="315-YN-Zsw"/>
+                                    <outlet property="name" destination="yQc-ra-fBT" id="gF4-wm-A24"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="J5h-Aw-57S" id="6Tf-lT-pgm"/>
+                            <outlet property="delegate" destination="J5h-Aw-57S" id="hcA-h1-C96"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="BDu-9H-9Qr"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2296" y="-96"/>
         </scene>
         <!--Menu Item View Controller-->
         <scene sceneID="4yD-0k-FmV">
@@ -499,6 +555,17 @@
         </class>
         <class className="VendorDashboardViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VendorDashboardViewController.h"/>
+        </class>
+        <class className="VendorItemListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VendorItemListCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="desc" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="VendorItemListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VendorItemListViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -10,6 +10,7 @@
 #import "Resource.h"
 #import "BuddyItem.h"
 #import "Vendor.h"
+#import <QuartzCore/QuartzCore.h>
 @implementation BuddyCell
 
 
@@ -47,7 +48,12 @@
             view.delegate = delegate;
             view.vendor = vendor;
             [view setCookie:vendor];
-            view.labelName.text = vendor.name;  
+            view.labelName.text = vendor.name;
+            [view layer].cornerRadius = 10;
+            view.clipsToBounds = YES;
+            [view layer].borderColor = [[UIColor colorWithRed:0.52 green:0.09 blue:0.07 alpha:1] CGColor];
+            [view layer].borderWidth = 3;
+
             [view commit];
             [[self contentView] addSubview:view];
             i++;

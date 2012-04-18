@@ -1,31 +1,27 @@
 //
-//  HomeViewController.m
+//  VendorItemListViewController.m
 //  DeliveryApps
 //
-//  Created by Yanuar Rahman on 4/13/12.
+//  Created by Yanuar Rahman on 4/18/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "BuddyCell.h"
-#import "Resource.h"
-#import "VendorDashboardViewController.h"
-#import "AppFactory.h"
-#import "AppDelegate.h"
+#import "VendorItemListViewController.h"
+#import "Vendor.h"
+#import "VendorItemListCell.h"
+#import "VendorMenuItem.h"
 
-@interface HomeViewController ()
+@interface VendorItemListViewController ()
 
 @end
 
-@implementation HomeViewController
-@synthesize dataCollection;
-int n = 0;
+@implementation VendorItemListViewController
+@synthesize vendor, items;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        
     }
     return self;
 }
@@ -33,14 +29,6 @@ int n = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    AppFactory* appFactory = [appDelegate getAppFactory];
-    dataCollection = appFactory.vendors;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    dataCollection = [[NSMutableArray alloc] initWithCapacity:9];
-//    for(int i=0;i<9;i++) {
-//        [dataCollection addObject:@"Label"];
-//    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -74,29 +62,18 @@ int n = 0;
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return [self.items count];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    n = [dataCollection count];
-    int modulo = n % 2;
-    int div = [dataCollection count]/2;
-    int h = (HEIGHT_CELL_ITEM+BUDDY_ITEM_MARGIN) * (modulo == 0 ? div : div + 1);
-    h+=BUDDY_ITEM_MARGIN;
-    return h==0?HEIGHT_CELL_ITEM : h;
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BuddyCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    BuddyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.delegate = self;
-    cell.dataCollection = self.dataCollection;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.clipsToBounds = NO;
-    cell.contentView.clipsToBounds = NO;
-    [cell buildUI];
-    [cell layoutSubviews];
+    static NSString *CellIdentifier = @"Cell";
+    VendorItemListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    VendorMenuItem *vmi = [self.items objectAtIndex:indexPath.row];
+    cell.name.text = vmi.name;
+    cell.desc.text = vmi.desc;
+    cell.vendorMenuItem = vmi;
+    [cell commit];
     // Configure the cell...
     
     return cell;
@@ -153,21 +130,5 @@ int n = 0;
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"VendorDashboard"])
-    {
-        
-        // Get reference to the destination view controller
-        VendorDashboardViewController *vc = [segue destinationViewController];
-        vc.vendor = sender;
-        // Pass any objects to the view controller here, like...
-        
-        
-    }
-}
 
-#pragma mark - IFieldChangeListener delegate
--(void)fieldChanged:(id<IComponent>)component {
-    [self performSegueWithIdentifier:@"VendorDashboard" sender:[component getCookie]];
-}
 @end

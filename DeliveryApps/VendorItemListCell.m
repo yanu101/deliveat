@@ -1,19 +1,19 @@
 //
-//  VendorDashboardCellTop.m
+//  VendorItemListCell.m
 //  DeliveryApps
 //
-//  Created by Yanuar Rahman on 4/17/12.
+//  Created by Yanuar Rahman on 4/18/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "VendorDashboardCellTop.h"
+#import "VendorItemListCell.h"
+
 #import "AppFactory.h"
 #import "AppDelegate.h"
-#import "Vendor.h"
 #import "ImageRuntimeStorage.h"
-
-@implementation VendorDashboardCellTop
-@synthesize labelVendor, vendor, vendorLogo;
+#import "VendorMenuItem.h"
+@implementation VendorItemListCell
+@synthesize image, name, desc, vendorMenuItem;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -34,16 +34,17 @@
     AppFactory* appFactory = [appDelegate getAppFactory];
     
     ImageRuntimeStorage *imgRuntimeStg = [appFactory getImageRuntimeStorage];
-   
-    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:self.vendor.thumbAvatarUrl andImageType:0 andDelegate:self];
-    UIImage* img = [UIImage imageWithData:dataImg];
-    self.vendorLogo.image =  img;
     
+    
+    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:vendorMenuItem.thumbUrl andImageType:0 andDelegate:self];
+    if(dataImg) {
+        UIImage* img = [UIImage imageWithData:dataImg];
+        image.image = img;
+    }
 }
 - (void)imageFetched:(NSData *)imageData {
     UIImage* img = [UIImage imageWithData:imageData];
-    self.vendorLogo.image =  img;
-//    [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
+    image.image = img;
     
 }
 @end

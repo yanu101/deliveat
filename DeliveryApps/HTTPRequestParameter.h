@@ -11,4 +11,5 @@
 @interface HTTPRequestParameter : NSObject
 
 @property (nonatomic, strong) API* api;
+@property (nonatomic, strong) NSString* vendorId;
 @end

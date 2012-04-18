@@ -9,12 +9,20 @@
 #import "VendorDashboardViewController.h"
 #import "VendorDashboardCellSubMenu.h"
 #import "VendorDashboardCellTop.h"
+#import "VendorItemListViewController.h"
 #import "Vendor.h"
+#import "MBProgressHUD.h"
+#import "AppFactory.h"
+#import "AppDelegate.h"
+#import "APIThread.h"
+#import "HTTPRequestParameter.h"
+#import "HTTPResult.h"
 @interface VendorDashboardViewController ()
 
 @end
 
 @implementation VendorDashboardViewController
+
 @synthesize vendor;
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -81,12 +89,25 @@
         [cellTop commit];
 //        cellTop.vendorLogo.image = 
         cellTop.labelVendor.text = vendor.name;
+        
+        cellTop.accessoryType = UITableViewCellAccessoryNone;
+        cellTop.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cellTop.clipsToBounds = NO;
+        cellTop.contentView.clipsToBounds = NO;
+        
         return cellTop;
     } else {
         NSArray* arrayMenu = [[NSArray alloc] initWithObjects:@"Menu", @"Review", @"Promo", nil];
         CellIdentifier = @"CellMenu";
         VendorDashboardCellSubMenu *cellMenu = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         cellMenu.labelMenu.text = [arrayMenu objectAtIndex:indexPath.row-1];
+        
+        cellMenu.accessoryType = UITableViewCellAccessoryNone;
+//        cellMenu.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cellMenu.clipsToBounds = NO;
+        cellMenu.contentView.clipsToBounds = NO;
         return cellMenu;
     }
     
@@ -135,6 +156,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString* idIndex = [NSString stringWithFormat:@"%d", indexPath.row-1];
+    if(indexPath.row-1 == 0) {
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppFactory* appFactory = [appDelegate getAppFactory];
+        getMenuItemThread = [[APIThread alloc] init];
+        getMenuItemThread.delegate = self;
+        HTTPRequestParameter* param = [[HTTPRequestParameter alloc] init];
+        param.api = [appFactory getAPI];
+        param.vendorId = @"1";
+        [getMenuItemThread performSelectorInBackground:@selector(getVendorItems:) withObject:param];
+        loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];	
+        loading.labelText = @"Loading";
+        [loading show:YES];
+
+    }
+//    [self performSegueWithIdentifier:@"VendorItem" sender:idIndex];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -143,5 +180,40 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"VendorItem"])
+    {
+        
+        // Get reference to the destination view controller
+        VendorItemListViewController *vc = [segue destinationViewController];
+        vc.items = sender;
+        // Pass any objects to the view controller here, like...
+        
+        
+    }
+}
+- (void)apiThread:(APIThread *)apiThread failed:(NSError *)error {
+    
+}
+- (void) getMenuVendorItemSuccess:(id)sender {
+    [self performSegueWithIdentifier:@"VendorItem" sender:sender];
+}
+- (void) apiThread:(APIThread*)apiThread receivedResult:(HTTPResult*)result {
+    [loading show:NO];
+    [loading done];
+    if(apiThread == getMenuItemThread) {
+        
+        NSMutableArray* dataVendors = result.result;
+        if(!dataVendors || [dataVendors count] == 0) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
+                                                                message:@"Data Connection Failed" 
+                                                               delegate:nil 
+                                                      cancelButtonTitle:@"Ok" 
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            return;
+        }
+        [self performSelectorOnMainThread:@selector(getMenuVendorItemSuccess:) withObject:dataVendors waitUntilDone:YES];
+    }
+}
 @end

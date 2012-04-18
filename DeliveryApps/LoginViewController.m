@@ -37,9 +37,9 @@ APIThread* getVendorThread;
     return self;
 }
 - (void)loginAction:(id)sender {
-    if([username.text length] == 0 || [password.text length] == 0) {
-        return;
-    }
+//    if([username.text length] == 0 || [password.text length] == 0) {
+//        return;
+//    }
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     AppFactory* appFactory = [appDelegate getAppFactory];
     getVendorThread = [[APIThread alloc] init];
@@ -106,6 +106,15 @@ APIThread* getVendorThread;
     if(apiThread == getVendorThread) {
         
         NSMutableArray* dataVendors = result.result;
+        if(!dataVendors || [dataVendors count] == 0) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
+                                                                message:@"Data Connection Failed" 
+                                                               delegate:nil 
+                                                      cancelButtonTitle:@"Ok" 
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            return;
+        }
         [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:dataVendors waitUntilDone:YES];
     }
 }

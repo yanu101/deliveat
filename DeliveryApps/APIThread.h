@@ -15,4 +15,5 @@
 @property (strong, nonatomic) id<IAPIThread> delegate;
 - (void) getDataImageWithParam:(HTTPRequestParameter*)param;
 - (void) getVendors:(HTTPRequestParameter*)param;
+- (void) getVendorItems:(HTTPRequestParameter*)param;
 @end
