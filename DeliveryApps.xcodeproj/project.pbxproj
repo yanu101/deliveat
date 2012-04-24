@@ -61,9 +61,6 @@
 		04768B291546966500F31647 /* NewLoginCellBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 04768B281546966500F31647 /* NewLoginCellBottom.m */; };
 		04768B301546A58800F31647 /* NewRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04768B2F1546A58800F31647 /* NewRegistrationViewController.m */; };
 		04768B331546A62B00F31647 /* NewRegistrationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04768B321546A62B00F31647 /* NewRegistrationCell.m */; };
-		048255921541B87A00A15AD9 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0482558E1541B87A00A15AD9 /* libTestFlight.a */; };
-		048255931541B87A00A15AD9 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0482558F1541B87A00A15AD9 /* README.txt */; };
-		048255941541B87A00A15AD9 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 048255901541B87A00A15AD9 /* release_notes.txt */; };
 		048255971541B8E500A15AD9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 048255961541B8E500A15AD9 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
@@ -174,10 +171,6 @@
 		04768B2F1546A58800F31647 /* NewRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRegistrationViewController.m; sourceTree = "<group>"; };
 		04768B311546A62B00F31647 /* NewRegistrationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRegistrationCell.h; sourceTree = "<group>"; };
 		04768B321546A62B00F31647 /* NewRegistrationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRegistrationCell.m; sourceTree = "<group>"; };
-		0482558E1541B87A00A15AD9 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		0482558F1541B87A00A15AD9 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		048255901541B87A00A15AD9 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		048255911541B87A00A15AD9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		048255961541B8E500A15AD9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -190,7 +183,6 @@
 				040184E9153419A700599EA1 /* UIKit.framework in Frameworks */,
 				040184EB153419A700599EA1 /* Foundation.framework in Frameworks */,
 				040184ED153419A700599EA1 /* CoreGraphics.framework in Frameworks */,
-				048255921541B87A00A15AD9 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				048255961541B8E500A15AD9 /* libz.dylib */,
-				0482558D1541B87900A15AD9 /* TestFlightSDK1.0 */,
 				040184EE153419A700599EA1 /* DeliveryApps */,
 				040184E7153419A700599EA1 /* Frameworks */,
 				040184E5153419A700599EA1 /* Products */,
@@ -455,17 +446,6 @@
 			name = vendor_dashboard;
 			sourceTree = "<group>";
 		};
-		0482558D1541B87900A15AD9 /* TestFlightSDK1.0 */ = {
-			isa = PBXGroup;
-			children = (
-				0482558E1541B87A00A15AD9 /* libTestFlight.a */,
-				0482558F1541B87A00A15AD9 /* README.txt */,
-				048255901541B87A00A15AD9 /* release_notes.txt */,
-				048255911541B87A00A15AD9 /* TestFlight.h */,
-			);
-			path = TestFlightSDK1.0;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -519,8 +499,6 @@
 				040184F3153419A700599EA1 /* InfoPlist.strings in Resources */,
 				040184FC153419A700599EA1 /* MainStoryboard.storyboard in Resources */,
 				0402093E1537B83E0028462F /* defaultIcon.png in Resources */,
-				048255931541B87A00A15AD9 /* README.txt in Resources */,
-				048255941541B87A00A15AD9 /* release_notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
