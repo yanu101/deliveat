@@ -161,8 +161,7 @@
     
     NSString* username = regCell.usernameField.text;
     NSString* password = regCell.passwordField.text;
-    NSLog(@"%@-- %@ , %@" , regCell, regCell.usernameField, regCell.passwordField);
-    NSLog(@"%@ , %@" , username, password);
+    
     if([username length] == 0 || [password length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
 		                                                    message:@"Username or Password Must not empty" 

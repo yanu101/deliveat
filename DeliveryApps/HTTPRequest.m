@@ -77,7 +77,6 @@
 
 	- (void) start
 	{
-        NSLog(@"masuk sini");
         if (_inProgress) return;
         _inProgress = YES;
         
@@ -97,9 +96,9 @@
             [_request addValue:[NSString stringWithFormat:@"%d", _bodyContent.length] forHTTPHeaderField:@"Content-Length"];
             [_request setHTTPBody: _bodyContent];        
         }
-         NSLog(@"masuk sini2");
+        
         _connection = [[NSURLConnection alloc] initWithRequest:_request delegate:self];		
-        NSLog(@"_connection : %@", _connection);
+        
 		if (_connection) {
             if (delegate && [delegate respondsToSelector:@selector(request:initialized:)]) {
                 [delegate request:self initialized:_URL];

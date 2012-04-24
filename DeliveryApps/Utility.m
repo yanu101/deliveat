@@ -78,7 +78,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
         }
         
         animatedDistance = PORTRAIT_KEYBOARD_HEIGHT;//floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
-        NSLog(@"Animated Distance : %f", animatedDistance);
         CGRect viewFrame = view.frame;
         //        [table setFrame:viewFrame];
         
@@ -91,7 +90,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
         for(UIView* vi in components) {
             CGRect viFrame = vi.frame;
             if([vi isEqual:table]) {
-                NSLog(@"view.frame.size.height - animatedDistance : %f", (viFrame.size.height));
+                
                 float h = view.frame.size.height - animatedDistance - 50;
                 viFrame.size.height = h;
             } else if([[vi class] isEqual:[UIImageView class]]) {

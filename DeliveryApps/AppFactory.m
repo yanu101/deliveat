@@ -16,7 +16,6 @@
 @synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary, vendors;
 
 - (ImageRuntimeStorage*) getImageRuntimeStorage {
-    NSLog(@"ImageRuntimeStorage : %@", imageRuntimeStorage);
     if(!imageRuntimeStorage) {
         imageRuntimeStorage = [[ImageRuntimeStorage alloc] init];
         imageRuntimeStorage.delegateCollection = [[NSMutableDictionary alloc] init];

@@ -11,9 +11,9 @@
 #import "HTTPResult.h"
 @implementation API
 
-NSString* const API_BASE = @"http://www.deliveat.com:3000/";
-NSString* const GET_VENDOR_API = @"api/vendors.json";
-NSString* const GET_VENDOR_ITEMS_API = @"api/vendors/"; //api/vendors/$id/items.json
+//NSString* const API_BASE = @"http://www.deliveat.com:3000/";
+//NSString* const GET_VENDOR_API = @"api/vendors.json";
+//NSString* const GET_VENDOR_ITEMS_API = @"api/vendors/"; //api/vendors/$id/items.json
 
 - (HTTPResult*)getGeneralImage:(NSString*)url {
     HTTPUtil* httpUtil = [[HTTPUtil alloc] init];

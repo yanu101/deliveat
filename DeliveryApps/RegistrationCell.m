@@ -15,9 +15,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        
-        NSLog(@"masuk sini gak sih ");
         
     }
     return self;

@@ -14,12 +14,12 @@
 + (NSMutableArray*) getVendorItems:(NSString*)stringPayload {
     NSMutableArray* array = [[NSMutableArray alloc] init];
     NSError *error;
-    NSLog(@"VendorMenuItem : %@", stringPayload);
+    
     NSData *jsonData = [stringPayload dataUsingEncoding:NSUTF8StringEncoding];
     if(!jsonData) {
         return nil;
     }
-    NSArray *items = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    NSArray *items = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
 	for(int i=0;i<[items count];i++) {
 		VendorMenuItem* vendor = [[self class] getVendorItem:(NSDictionary*)[items objectAtIndex:i]];
 		[array addObject:vendor];

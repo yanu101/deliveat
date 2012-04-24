@@ -14,7 +14,7 @@
 #import "Vendor.h"
 #import "VendoerMenuItemParser.h"
 #import "VendorParser.h"
-
+#import "Resource.h"
 @implementation APIThread
 @synthesize delegate;
 
@@ -32,42 +32,92 @@
     
 }
 - (void) getVendors:(HTTPRequestParameter*)param {
-    HTTPResult* result = [param.api getHttpRequest:[NSString stringWithFormat:@"%@%@", API_BASE, GET_VENDOR_API] andMethod:@"GET"];
-    if(result.error) {
-        if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
-            [delegate apiThread:self failed:result.error];
-        }
-    } else {
-        if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: 
+                        [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", API_BASE, GET_VENDOR_API]]];
+        HTTPResult* result = [[HTTPResult alloc] init];
+        if(!data) {
             
+            if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
+                [delegate apiThread:self failed:result.error];
+            }
+        } else {
+            result.data = data;
             NSString* dataStr = [NSString stringWithUTF8String:[result.data bytes]];
             NSMutableArray* array = [VendorParser getVendors:dataStr];
-            result.result = array;
             
-            [delegate apiThread:self receivedResult:result];
-        } 
-    }
+            if(!array) {
+                NSError* error = [NSError errorWithDomain:@"Data Connection Failed" code:1 userInfo:nil];
+                [delegate apiThread:self failed:error];
+                return;
+            }
+            result.result = array;
+            if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+                [delegate apiThread:self receivedResult:result];
+            }
+        }
+    });
+
+//    HTTPResult* result = [param.api getHttpRequest:[NSString stringWithFormat:@"%@%@", API_BASE, GET_VENDOR_API] andMethod:@"GET"];
+//    if(result.error) {
+//        if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
+//            [delegate apiThread:self failed:result.error];
+//        }
+//    } else {
+//        if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+//            
+//            NSString* dataStr = [NSString stringWithUTF8String:[result.data bytes]];
+//            NSMutableArray* array = [VendorParser getVendors:dataStr];
+//            result.result = array;
+//            
+//            [delegate apiThread:self receivedResult:result];
+//        } 
+//    }
     
 }
 - (void) getVendorItems:(HTTPRequestParameter*)param {
-    
-    NSLog(@"getVendorItems URL : %@%@%@/items.json",API_BASE,GET_VENDOR_ITEMS_API,param.vendorId);
-    HTTPResult* result = [param.api getHttpRequest:[NSString stringWithFormat:@"%@%@%@/items.json",API_BASE,GET_VENDOR_ITEMS_API,param.vendorId] andMethod:@"GET"];
-    if(result.error) {
-        if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
-            [delegate apiThread:self failed:result.error];
-        }
-    } else {
-        if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: 
+                        [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@/items.json",API_BASE,GET_VENDOR_ITEMS_API,param.vendorId]]];
+        HTTPResult* result = [[HTTPResult alloc] init];
+        if(!data) {
             
+            if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
+                [delegate apiThread:self failed:result.error];
+            }
+        } else {
+            result.data = data;
             NSString* dataStr = [NSString stringWithUTF8String:[result.data bytes]];
-//            NSLog(@"Data Vendor Items : %@", dataStr);
             NSMutableArray* array = [VendoerMenuItemParser getVendorItems:dataStr];
-            result.result = array;
             
-            [delegate apiThread:self receivedResult:result];
-        } 
-    }
+            if(!array) {
+                NSError* error = [NSError errorWithDomain:@"Data Connection Failed" code:1 userInfo:nil];
+                [delegate apiThread:self failed:error];
+                return;
+            }
+            result.result = array;
+            if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+                [delegate apiThread:self receivedResult:result];
+            }
+        }
+    });
+    
+//    HTTPResult* result = [param.api getHttpRequest:[NSString stringWithFormat:@"%@%@%@/items.json",API_BASE,GET_VENDOR_ITEMS_API,param.vendorId] andMethod:@"GET"];
+//    if(result.error) {
+//        if (delegate && [delegate respondsToSelector:@selector(apiThread:failed:)]) {
+//            [delegate apiThread:self failed:result.error];
+//        }
+//    } else {
+//        if (delegate && [delegate respondsToSelector:@selector(apiThread:receivedResult:)]) {
+//            
+//            NSString* dataStr = [NSString stringWithUTF8String:[result.data bytes]];
+////            NSLog(@"Data Vendor Items : %@", dataStr);
+//            NSMutableArray* array = [VendoerMenuItemParser getVendorItems:dataStr];
+//            result.result = array;
+//            
+//            [delegate apiThread:self receivedResult:result];
+//        } 
+//    }
     
 }
 

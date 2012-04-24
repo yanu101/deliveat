@@ -202,7 +202,6 @@
     [loading show:NO];
     [loading done];
     if(apiThread == getMenuItemThread) {
-        
         NSMutableArray* dataVendors = result.result;
         if(!dataVendors || [dataVendors count] == 0) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 

@@ -12,6 +12,7 @@
 #define BUDDY_ITEM_MARGIN 10
 #define WIDTH_CELL_ITEM 145
 #define HEIGHT_AVATAR_IMAGE_ITEM 110
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 //#define HEIGHT_AVATAR_CELL_ITEM 110
 #define HEIGHT_CELL_ITEM 136
 @interface Resource : NSObject

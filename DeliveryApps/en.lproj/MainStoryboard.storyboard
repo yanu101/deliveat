@@ -1,11 +1,193 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="wxL-4g-pia">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
+        <!--New Registration View Controller - Title-->
+        <scene sceneID="6kd-9D-vef">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FPh-Y5-48l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="pKb-4q-is9" customClass="NewRegistrationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gs3-p4-h1O">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="d0c-aC-DlN">
+                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Cell" id="NrG-AF-4Fx" customClass="NewRegistrationCell">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="RWH-6t-ex1">
+                                                    <rect key="frame" x="20" y="6" width="260" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gus-aH-0rZ">
+                                                    <rect key="frame" x="83" y="3" width="134" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Create">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="createButton" destination="Gus-aH-0rZ" id="iGk-hM-VBI"/>
+                                            <outlet property="inputField" destination="RWH-6t-ex1" id="pvs-g1-fAG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pKb-4q-is9" id="MpT-7G-CsO"/>
+                                    <outlet property="delegate" destination="pKb-4q-is9" id="2Mv-Eo-7VT"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" id="Kas-KC-dDX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Deliveat" id="CzW-gf-UJs">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="aoJ-fZ-JEz">
+                                            <connections>
+                                                <segue destination="wxL-4g-pia" kind="modal" modalTransitionStyle="crossDissolve" id="Y62-xe-GQR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="JNF-du-cIM"/>
+                    <connections>
+                        <outlet property="tableView" destination="d0c-aC-DlN" id="drf-Ge-iFE"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="296" y="-1309"/>
+        </scene>
+        <!--New Login View Controller-->
+        <scene sceneID="fx2-bf-lm1">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AYS-8p-J7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="wxL-4g-pia" customClass="NewLoginViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="WbN-2g-S0f">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TopCell" rowHeight="265" id="EaV-nV-sXB" customClass="NewLoginCellTop">
+                                <rect key="frame" x="0.0" y="46" width="320" height="266"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="264"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="defaultIcon.png" highlightedImage="defaultIcon.png" id="HwG-CQ-SSL">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="265"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="imageLogo" destination="HwG-CQ-SSL" id="0g9-Sj-n7f"/>
+                                    <segue destination="3N7-Xb-EKV" kind="modal" identifier="LoginSegue" modalTransitionStyle="crossDissolve" id="FGn-eA-wdt"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BottomCell" id="3JB-zL-Qv8" customClass="NewLoginCellBottom">
+                                <rect key="frame" x="0.0" y="312" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="OqN-YL-Q9m">
+                                            <rect key="frame" x="20" y="6" width="260" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="hideKeyboard:" destination="wxL-4g-pia" eventType="editingDidEnd" id="3Di-3e-v0W"/>
+                                                <action selector="hideKeyboard:" destination="wxL-4g-pia" eventType="editingDidEndOnExit" id="FWL-RW-3ad"/>
+                                            </connections>
+                                        </textField>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XBo-3z-rhc">
+                                            <rect key="frame" x="63" y="3" width="72" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="Signup">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="signUpAction:" destination="wxL-4g-pia" eventType="touchUpInside" id="3XA-7u-PaE"/>
+                                                <segue destination="pKb-4q-is9" kind="modal" modalTransitionStyle="crossDissolve" id="OU2-Gh-oDx"/>
+                                            </connections>
+                                        </button>
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="to join Deliveat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Yiq-Sl-pdD">
+                                            <rect key="frame" x="129" y="11" width="108" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e2O-Pe-hAm">
+                                            <rect key="frame" x="95" y="3" width="110" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="Submit">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="submitAction:" destination="wxL-4g-pia" eventType="touchUpInside" id="Qxu-Au-6Gw"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="field" destination="OqN-YL-Q9m" id="V75-hf-Ffo"/>
+                                    <outlet property="label" destination="Yiq-Sl-pdD" id="Lrm-un-9f2"/>
+                                    <outlet property="signup" destination="XBo-3z-rhc" id="xZP-Ga-OfT"/>
+                                    <outlet property="submit" destination="e2O-Pe-hAm" id="DHy-fa-Yhn"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="wxL-4g-pia" id="qCR-mv-Zu7"/>
+                            <outlet property="delegate" destination="wxL-4g-pia" id="bK4-EK-qAo"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="35" y="-650"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="5">
             <objects>
@@ -160,7 +342,13 @@
                             <outlet property="delegate" destination="bBZ-TV-UIF" id="fSc-A0-Kgd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="r44-50-gUH"/>
+                    <navigationItem key="navigationItem" id="r44-50-gUH">
+                        <barButtonItem key="leftBarButtonItem" title="Exit" id="XiV-Is-xam">
+                            <connections>
+                                <segue destination="wxL-4g-pia" kind="modal" id="bse-mi-KZa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1489" y="-105"/>
@@ -464,14 +652,14 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="407" y="-82"/>
+            <point key="canvasLocation" x="535" y="-478"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Home-->
         <scene sceneID="7Q6-Qf-Slq">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWQ-R9-Z22" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="uiV-65-G0v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="TaX-0z-evP"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="TaX-0z-evP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XZ4-zK-w75">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -518,6 +706,42 @@
         </class>
         <class className="MenuItemViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuItemViewController.h"/>
+        </class>
+        <class className="NewLoginCellBottom" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewLoginCellBottom.h"/>
+            <relationships>
+                <relationship kind="outlet" name="field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="signup" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="submit" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NewLoginCellTop" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewLoginCellTop.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageLogo" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="NewLoginViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewLoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="hideKeyboard:"/>
+                <relationship kind="action" name="signUpAction:"/>
+                <relationship kind="action" name="submitAction:"/>
+            </relationships>
+        </class>
+        <class className="NewRegistrationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewRegistrationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="inputField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NewRegistrationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewRegistrationViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="RegistrationCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegistrationCell.h"/>
