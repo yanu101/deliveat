@@ -12,6 +12,8 @@
 #define GET_VENDOR_API @"api/vendors.json"
 #define GET_VENDOR_ITEMS_API @"api/vendors/"
 #define REGISTRATION_API @"api/users"
+#define LOGIN_API @"api/users/login"
+
 @class HTTPResult;
 //extern NSString* const API_BASE;
 //extern NSString* const GET_VENDOR_API;

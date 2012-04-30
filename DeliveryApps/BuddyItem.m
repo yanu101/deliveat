@@ -25,8 +25,11 @@
         avatarImageButton = [[UIButton alloc] init];
         [avatarImageButton setBackgroundImage:[UIImage imageNamed:@"defaultIcon.png"] forState:UIControlStateNormal];
         [avatarImageButton addTarget:self action:@selector(avatarImageButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        avatarImageButton.backgroundColor = [UIColor clearColor];
         labelName = [[UILabel alloc] init];
         labelName.font = [UIFont systemFontOfSize:14];
+        labelName.backgroundColor = [UIColor clearColor];
+        labelName.textAlignment = UITextAlignmentCenter;
         [self addSubview:avatarImageButton];
         [self addSubview:labelName];
         
@@ -49,7 +52,7 @@
     int y = 0;
     frame = CGRectMake(x, y, contentRect.size.width, HEIGHT_AVATAR_IMAGE_ITEM);
     avatarImageButton.frame = frame;
-    y +=HEIGHT_AVATAR_IMAGE_ITEM + BUDDY_ITEM_COLUMN_PADDING;
+    y +=HEIGHT_AVATAR_IMAGE_ITEM;
     frame = CGRectMake(x, y, contentRect.size.width, LABEL_HEIGHT);
     labelName.frame = frame;
 }

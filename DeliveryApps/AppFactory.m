@@ -13,7 +13,7 @@
 #import "API.h"
 #import "Util.h"
 @implementation AppFactory
-@synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary, vendors;
+@synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary, vendors, token;
 
 - (ImageRuntimeStorage*) getImageRuntimeStorage {
     if(!imageRuntimeStorage) {

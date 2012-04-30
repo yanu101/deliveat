@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) API* api;
 @property (nonatomic, strong) NSString* vendorId;
+@property (nonatomic, strong) NSString* regEmail;
+@property (nonatomic, strong) NSString* regPass;
 @end

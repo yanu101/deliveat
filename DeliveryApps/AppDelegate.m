@@ -15,8 +15,46 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    [self customizeGlobalTheme];
     return YES;
+}
+- (void)customizeGlobalTheme
+{
+    UIImage *navBarImage = [UIImage imageNamed:@"navbar.png"];
+    
+    [[UINavigationBar appearance] setBackgroundImage:navBarImage 
+                                       forBarMetrics:UIBarMetricsDefault];
+    
+    
+    UIImage *barButton = [[UIImage imageNamed:@"navbar-icon.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
+    
+    [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal 
+                                          barMetrics:UIBarMetricsDefault];
+    
+    UIImage *backButton = [[UIImage imageNamed:@"back-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 4)];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal 
+                                                    barMetrics:UIBarMetricsDefault];
+    
+    UIImage* tabBarBackground = [UIImage imageNamed:@"tabbar.png"];
+    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+    
+    
+    UIImage *minImage = [UIImage imageNamed:@"slider-track-fill.png"];
+    UIImage *maxImage = [UIImage imageNamed:@"slider-track.png"];
+    UIImage *thumbImage = [UIImage imageNamed:@"slider-cap.png"];
+    
+    [[UISlider appearance] setMaximumTrackImage:maxImage 
+                                       forState:UIControlStateNormal];
+    [[UISlider appearance] setMinimumTrackImage:minImage 
+                                       forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage 
+                                forState:UIControlStateNormal];
+    
+    
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar-item.png"]];
+    
 }
 - (AppFactory *)getAppFactory {
     if(!appFactory) {

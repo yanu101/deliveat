@@ -19,13 +19,15 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "Vendor.h"
+#import "NewLoginCellBottom.h"
+
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
 
-@synthesize username, password, buttonLogin, sampleWebView;
+@synthesize buttonSignup, buttonLogin, tableView, prevTextField;
 APIThread* getVendorThread;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,8 +53,9 @@ APIThread* getVendorThread;
     loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];	
 	loading.labelText = @"Sign in";
     [loading show:YES];
-    [username resignFirstResponder];
-    [password resignFirstResponder];
+    
+//    [username resignFirstResponder];
+//    [password resignFirstResponder];
 }
 - (void)signupAction:(id)sender {
     
@@ -70,6 +73,7 @@ APIThread* getVendorThread;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
         
 //    sampleWebView.delegate = self;
 //    [sampleWebView loadHTMLString:@"<html><body style=\"background-color: #ff0000; color: #FFFFFF; font-family: Helvetica; font-size: 10pt; width: 300px; word-wrap: break-word;\">YANUAR RAHMAN<br><a href=\"http://www.google.com\">Google</a></body></html>" baseURL:nil];
@@ -118,4 +122,58 @@ APIThread* getVendorThread;
         [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:dataVendors waitUntilDone:YES];
     }
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if(prevTextField) {
+        [prevTextField resignFirstResponder];
+//        [Utility scrollScreenBeginEditingInView:self.view inTextField:textField show:NO];
+    }
+    [Utility scrollScreenBeginEditingInView:self.view inTextField:textField show:YES];
+    self.prevTextField = textField;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"textFieldDidEndEditing");
+    [textField resignFirstResponder];
+    [Utility scrollScreenBeginEditingInView:self.view inTextField:textField show:NO];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textFieldShouldReturn");
+    [textField resignFirstResponder];
+//    [Utility scrollScreenBeginEditingInView:self.view inTextField:textField show:NO];
+//    self.prevTextField = textField;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *CellIdentifier = @"BottomCell";
+    NewLoginCellBottom *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(indexPath.row == 0) {
+        cell.field.placeholder = @"Username";
+        cell.field.delegate = self;
+        cell.signup.hidden = YES;
+        cell.submit.hidden = YES;
+        cell.label.hidden = YES;
+        cell.tag = 1;
+    } else if(indexPath.row == 1){
+        cell.field.placeholder = @"Password";
+        cell.field.delegate = self;
+        cell.field.secureTextEntry = YES;
+        cell.signup.hidden = YES;
+        cell.submit.hidden = YES;
+        cell.label.hidden = YES;
+        cell.tag = 2;
+        
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 @end

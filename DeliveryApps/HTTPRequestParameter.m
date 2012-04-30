@@ -9,6 +9,6 @@
 #import "HTTPRequestParameter.h"
 
 @implementation HTTPRequestParameter
-@synthesize api, vendorId;
+@synthesize api, vendorId, regEmail, regPass;
 
 @end

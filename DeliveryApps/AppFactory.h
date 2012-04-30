@@ -28,6 +28,7 @@
 @property (nonatomic, readonly, getter = getUtil) Util *util;
 @property (nonatomic, strong) NSMutableDictionary* messageDictionary;
 @property (nonatomic, strong) NSMutableArray* vendors;
+@property (strong, nonatomic) NSString* token;
 
 //- (ImageRuntimeStorage*) getImageRuntimeStorage;
 //- (Resource*) getResource;

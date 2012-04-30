@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface NewRegistrationViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+#import "Protocols.h"
+@class MBProgressHUD;
+@interface NewRegistrationViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, IAPIThread> {
+    MBProgressHUD* loading;
+    APIThread* getVendorThread;
+    APIThread* registrationThread;
+}
 @property (strong, nonatomic) IBOutlet UITableView* tableView;
+
+- (IBAction)doRegistration:(id)sender;
 @end

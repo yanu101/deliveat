@@ -16,20 +16,21 @@
 #import "HTTPRequestParameter.h"
 #import "MBProgressHUD.h"
 #import "HTTPResult.h"
+#import "Utility.h"
 @interface NewLoginViewController ()
 
 @end
 
 @implementation NewLoginViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize tableView, prevTextField;
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
@@ -37,19 +38,12 @@
     UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.tableView.contentInset = inset;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.backgroundColor = [UIColor whiteColor];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -78,15 +72,26 @@
     }
     return 2;
 }
-//- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 1;
-//}
+
 - (IBAction)hideKeyboard:(id)sender {
     UITextField *tf = sender;
     [tf resignFirstResponder];
+    
+}
+- (IBAction)showKeyboard:(id)sender {
 }
 - (IBAction)signUpAction:(id)sender {
-    
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [Utility scrollScreenBeginEditingInView:self.view inTextField:textField show:YES];
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [Utility scrollScreenBeginEditingInView:self.view inTextField:textField show:NO];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
 }
 - (IBAction)submitAction:(id)sender {
     
@@ -96,13 +101,32 @@
     NewLoginCellBottom* passwordCell = (NewLoginCellBottom*)[self.tableView cellForRowAtIndexPath:indexPathPassword] ;
     UITextField *usernameField = usernameCell.field;
     UITextField *passwordField = passwordCell.field;
-    
+    if([usernameField.text length] ==0 || [passwordField.text length] == 0) {
+        [Utility showAlertWithTitle:@"Alert" andMessage:@"Gak boleh kosong nyong"];
+        return;
+    }
     [usernameField resignFirstResponder];
     [passwordField resignFirstResponder];
     
-    
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     AppFactory* appFactory = [appDelegate getAppFactory];
+    
+    loginThread = [[APIThread alloc] init];
+    loginThread.delegate = self;
+    HTTPRequestParameter* param = [[HTTPRequestParameter alloc] init];
+    param.api = [appFactory getAPI];
+    param.regEmail = usernameField.text;
+    param.regPass = passwordField.text;
+    [loginThread doLogin:param];
+    loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];	
+	loading.labelText = @"Sign in";
+    [loading show:YES];
+    
+}
+- (void) getVendorAction {
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppFactory* appFactory = [appDelegate getAppFactory];
+    
     getVendorThread = [[APIThread alloc] init];
     getVendorThread.delegate = self;
     HTTPRequestParameter* param = [[HTTPRequestParameter alloc] init];
@@ -110,14 +134,13 @@
     
     [getVendorThread performSelectorInBackground:@selector(getVendors:) withObject:param];
     loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];	
-	loading.labelText = @"Sign in";
+	loading.labelText = @"Loading";
     [loading show:YES];
-    
-    
-    
-    
 }
 - (void) apiThread:(APIThread*)apiThread failed:(NSError *) error {
+    
+    [loading show:NO];
+    [loading done];
     
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -130,38 +153,45 @@
     }
     
 }
-- (void) loginSuccess:(id)sender {
-    [self performSegueWithIdentifier:@"LoginSegue" sender:sender];
-}
+//- (void) loginSuccess:(id)sender {
+//    [self performSegueWithIdentifier:@"LoginSegue" sender:sender];
+//}
 - (void) apiThread:(APIThread*)apiThread receivedResult:(HTTPResult*)result {
     [loading show:NO];
     [loading done];
+    if(apiThread == loginThread) {
+        loginThread = nil;
+        [self getVendorAction];
+    }
     if(apiThread == getVendorThread) {
         
         NSMutableArray* dataVendors = result.result;
-        if(!dataVendors || [dataVendors count] == 0) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
-                                                                message:@"Data Connection Failed" 
-                                                               delegate:nil 
-                                                      cancelButtonTitle:@"Ok" 
-                                                      otherButtonTitles:nil];
-            [alertView show];
-            return;
-        }
-        [self performSelectorOnMainThread:@selector(loginSuccess:) withObject:dataVendors waitUntilDone:YES];
+        [self performSegueWithIdentifier:@"LoginSegue" sender:dataVendors];
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
-        return 265;
+        return 250;
     } 
+    if(indexPath.section == 2) {
+        return 30;
+    }
     return 40;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 1;
+    return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1;
+    return 5;
+}
+- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
+{
+    //    cell.backgroundColor = indexPath.row % 2 
+    //    ? [UIColor colorWithRed: 0.0 green: 0.0 blue: 1.0 alpha: 1.0] 
+    //    : [UIColor whiteColor];
+    //    cell.textLabel.backgroundColor = [UIColor clearColor];
+    //    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor clearColor];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -197,22 +227,22 @@
             cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         NSString *CellIdentifier = @"BottomCell";
         NewLoginCellBottom *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        cell.backgroundView = 
-        // Configure the cell...
-        
         
         if(indexPath.row == 0) {
             cell.field.placeholder = @"Username";
+            cell.field.delegate = self;
             cell.signup.hidden = YES;
             cell.submit.hidden = YES;
             cell.label.hidden = YES;
             cell.tag = 1;
         } else if(indexPath.row == 1){
             cell.field.placeholder = @"Password";
+            cell.field.delegate = self;
             cell.field.secureTextEntry = YES;
             cell.signup.hidden = YES;
             cell.submit.hidden = YES;
@@ -220,6 +250,7 @@
             cell.tag = 2;
             
         }
+//        cell.userInteractionEnabled = NO;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }

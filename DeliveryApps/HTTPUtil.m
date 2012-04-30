@@ -20,7 +20,9 @@
     [request setHTTPMethod:reqMethod];
     
     if(contentType) {
-        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+//        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+        [request setValue:contentType forHTTPHeaderField:@"Accept"];
     }
     
     if ([headers count] > 0) {
@@ -38,6 +40,10 @@
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     int statusCode = response.statusCode;
     HTTPResult *result = [[HTTPResult alloc] init];
+    
+    if(statusCode == 200) {
+        error = nil;
+    }
     result.error = error;
     result.data = data;
     result.responseCode = statusCode;

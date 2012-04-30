@@ -160,6 +160,15 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 	}
 	
 }
++ (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title 
+                                                        message:message 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"Ok" 
+                                              otherButtonTitles:nil];
+    [alertView show];
+    return;
+}
 //+ (void)markScreenInView:(UIView*)view show:(BOOL)isShow {
 //    
 //    if(isShow) {

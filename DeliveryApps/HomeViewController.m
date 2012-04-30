@@ -37,16 +37,9 @@ int n = 0;
     AppFactory* appFactory = [appDelegate getAppFactory];
     dataCollection = appFactory.vendors;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    dataCollection = [[NSMutableArray alloc] initWithCapacity:9];
-//    for(int i=0;i<9;i++) {
-//        [dataCollection addObject:@"Label"];
-//    }
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidUnload
