@@ -21,4 +21,5 @@
 - (void) getVendorItems:(HTTPRequestParameter*)param;
 - (void) doRegistration:(HTTPRequestParameter*)param;
 - (void) doLogin:(HTTPRequestParameter*)param;
+- (void) doCheckout:(HTTPRequestParameter*)param;
 @end

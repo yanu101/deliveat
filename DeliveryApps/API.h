@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #define GENERAL_GROUP @"GENERAL"
-#define API_BASE @"http://www.deliveat.com:3000/"
-#define GET_VENDOR_API @"api/vendors.json"
-#define GET_VENDOR_ITEMS_API @"api/vendors/"
-#define REGISTRATION_API @"api/users"
-#define LOGIN_API @"api/users/login"
+#define API_BASE @"http://www.deliveat.com:3000"
+#define GET_VENDOR_API @"/api/vendors.json"
+#define GET_VENDOR_ITEMS_API @"/api/vendors/"
+#define REGISTRATION_API @"/api/users"
+#define LOGIN_API @"/api/users/login"
+#define CHECKOUT_API @"/api/orders"
 
 @class HTTPResult;
 //extern NSString* const API_BASE;

@@ -34,6 +34,7 @@
     while (looping) {
         if([delegateCollection count] > 0) {
             NSMutableArray *discardedItems = [[NSMutableArray alloc] init];
+            NSLog(@"DelegateCollection : %@", delegateCollection);
             for(NSString* imageUrl in delegateCollection) {
                 
                 id<IImageRuntimeStorageListener> delegate = [delegateCollection objectForKey:imageUrl];
@@ -41,10 +42,12 @@
                     [discardedItems addObject:imageUrl];
                 }
                 NSString* urlStr = [NSString stringWithFormat:@"%@%@",API_BASE,imageUrl];
+                NSLog(@"GET Data URL: %@", urlStr);
                 dispatch_async(kBgQueue, ^{
                     NSData* data = [NSData dataWithContentsOfURL: 
                                     [NSURL URLWithString:urlStr]];
                     if(data) {
+                        NSLog(@"GET Data : %d", [data length]);
                         [imageRuntimeStorageCollection setObject:data forKey:imageUrl];
                         [delegate imageFetched:data];
                     }

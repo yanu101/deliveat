@@ -13,6 +13,9 @@
 @class API;
 @class APIThread;
 @class Util;
+@class MenuOrder;
+
+@class MenuOrderItem;
 @interface AppFactory : NSObject<IAppFactory> {
     ImageRuntimeStorage* imageRuntimeStorage;
     Resource* resource;
@@ -29,7 +32,10 @@
 @property (nonatomic, strong) NSMutableDictionary* messageDictionary;
 @property (nonatomic, strong) NSMutableArray* vendors;
 @property (strong, nonatomic) NSString* token;
+@property (strong, nonatomic) MenuOrder* menuOrder;
 
+
+- (void) resetMenuOrder;
 //- (ImageRuntimeStorage*) getImageRuntimeStorage;
 //- (Resource*) getResource;
 //- (APIThread*) getApiThread;

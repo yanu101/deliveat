@@ -57,19 +57,19 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if(section == 0) {
-        return 1;
-    }
-    if(section == 2) {
-        return 2;
-    }
+//    if(section == 0) {
+//        return 1;
+//    }
+//    if(section == 2) {
+//        return 2;
+//    }
     return 2;
 }
 
@@ -95,8 +95,8 @@
 }
 - (IBAction)submitAction:(id)sender {
     
-    NSIndexPath *indexPathUsername = [NSIndexPath indexPathForRow:0 inSection:1];
-    NSIndexPath *indexPathPassword = [NSIndexPath indexPathForRow:1 inSection:1];
+    NSIndexPath *indexPathUsername = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPathPassword = [NSIndexPath indexPathForRow:1 inSection:0];
     NewLoginCellBottom* usernameCell = (NewLoginCellBottom*)[self.tableView cellForRowAtIndexPath:indexPathUsername] ;
     NewLoginCellBottom* passwordCell = (NewLoginCellBottom*)[self.tableView cellForRowAtIndexPath:indexPathPassword] ;
     UITextField *usernameField = usernameCell.field;
@@ -170,19 +170,19 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0) {
-        return 250;
-    } 
-    if(indexPath.section == 2) {
+//    if(indexPath.section == 0) {
+//        return 250;
+//    } 
+    if(indexPath.section == 1) {
         return 30;
     }
     return 40;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 5;
+    return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 5;
+    return 1;
 }
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
 {
@@ -195,19 +195,20 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0) {
-        NSString *CellIdentifier = @"TopCell";
-        NewLoginCellTop *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        // Configure the cell...
-        
+//    if(indexPath.section == 0) {
+//        NSString *CellIdentifier = @"TopCell";
+//        NewLoginCellTop *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        
+//        // Configure the cell...
+//        
+////        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.accessoryType = UITableViewCellAccessoryNone;
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.userInteractionEnabled = NO;
-        cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-        return cell;
-    } else if(indexPath.section == 2) {
+//        cell.userInteractionEnabled = NO;
+//        cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+//        return cell;
+//    } else 
+     if(indexPath.section == 1) {
         NSString *CellIdentifier = @"BottomCell";
         NewLoginCellBottom *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(indexPath.row == 0){

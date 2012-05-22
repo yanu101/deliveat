@@ -37,8 +37,8 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
-    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
+//    self.tableView.backgroundColor = [UIColor clearColor];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -167,7 +167,7 @@
         getMenuItemThread.delegate = self;
         HTTPRequestParameter* param = [[HTTPRequestParameter alloc] init];
         param.api = [appFactory getAPI];
-        param.vendorId = @"1";
+        param.vendorId = [NSString stringWithFormat:@"%d", self.vendor.ID];
         [getMenuItemThread performSelectorInBackground:@selector(getVendorItems:) withObject:param];
         loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];	
         loading.labelText = @"Loading";
@@ -190,6 +190,7 @@
         // Get reference to the destination view controller
         VendorItemListViewController *vc = [segue destinationViewController];
         vc.items = sender;
+        vc.vendor = vendor;
         // Pass any objects to the view controller here, like...
         
         

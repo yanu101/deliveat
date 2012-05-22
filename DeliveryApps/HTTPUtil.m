@@ -33,15 +33,17 @@
     }
     
     if(bodyContent) {
+        NSLog(@"Body : %@", [NSString stringWithUTF8String:[bodyContent bytes]]);
         [request addValue:[NSString stringWithFormat:@"%d", bodyContent.length] forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:bodyContent];
     }
     
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     int statusCode = response.statusCode;
+    
     HTTPResult *result = [[HTTPResult alloc] init];
     
-    if(statusCode == 200) {
+    if(statusCode == 200 || statusCode == 204) {
         error = nil;
     }
     result.error = error;

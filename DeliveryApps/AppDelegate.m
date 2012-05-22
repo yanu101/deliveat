@@ -57,9 +57,11 @@
     
 }
 - (AppFactory *)getAppFactory {
+    NSLog(@"AppFactory : %@", appFactory);
     if(!appFactory) {
         appFactory = [[AppFactory alloc] init];
-        appFactory.messageDictionary = [[NSMutableDictionary alloc] init];
+        [appFactory resetMenuOrder];
+//        appFactory.messageDictionary = [[NSMutableDictionary alloc] init];
     }
     return appFactory;
 }						

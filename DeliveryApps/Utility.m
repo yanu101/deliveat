@@ -169,6 +169,26 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     [alertView show];
     return;
 }
++ (void)roundedLayer:(CALayer *)viewLayer 
+              radius:(float)r 
+              shadow:(BOOL)s
+{
+    [viewLayer setMasksToBounds:YES];
+    [viewLayer setCornerRadius:r];  
+    
+    viewLayer.borderColor = [[UIColor colorWithRed:180 green:180 blue:180 alpha:1] CGColor];
+//    [viewLayer setBorderColor:[RGB(180, 180, 180) CGColor]];
+    [viewLayer setBorderWidth:1.0f];
+    if(s)
+    {
+//        [viewLayer setShadowColor:[RGB(0, 0, 0) CGColor]];
+        viewLayer.shadowColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor];
+        [viewLayer setShadowOffset:CGSizeMake(0, 0)];
+        [viewLayer setShadowOpacity:1];
+        [viewLayer setShadowRadius:2.0];
+    }
+    return;
+}
 //+ (void)markScreenInView:(UIView*)view show:(BOOL)isShow {
 //    
 //    if(isShow) {

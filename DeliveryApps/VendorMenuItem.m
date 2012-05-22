@@ -9,7 +9,7 @@
 #import "VendorMenuItem.h"
 
 @implementation VendorMenuItem
-@synthesize name, desc, thumbUrl;
+@synthesize name, desc, thumbUrl, vendor, ID, dahboardImages, logoImages, price;
 
 
 @end

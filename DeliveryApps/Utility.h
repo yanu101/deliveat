@@ -14,4 +14,5 @@
 + (void)markScreenInView:(UIView*)view show:(BOOL)isShow;
 + (NSString*)decodeEntities:(NSString*)html;
 + (void)showAlertWithTitle:(NSString*)title andMessage:(NSString*)message;
++ (void)roundedLayer:(CALayer *)viewLayer radius:(float)r shadow:(BOOL)s;
 @end

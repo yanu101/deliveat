@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 @class Vendor;
-@interface VendorItemListViewController : UITableViewController
+#define PADDING 10
+#define MARGIN_TEXT 5
+#define IMAGE_HEIGHT 52
+#define TITLE_HEIGHT 21
+#define STAR_IMAGE_HEIGHT 16
+
+@interface VendorItemListViewController : BaseTableViewController
 
 @property (strong, nonatomic) Vendor* vendor;
 @property (strong, nonatomic) NSMutableArray* items;

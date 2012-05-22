@@ -14,6 +14,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView* image;
 @property (strong, nonatomic) IBOutlet UILabel* name;
 @property (strong, nonatomic) IBOutlet UILabel* desc;
+@property (strong, nonatomic) IBOutlet UIImageView* star;
+@property (strong, nonatomic) IBOutlet UILabel* price;
+
 @property (strong, nonatomic) VendorMenuItem* vendorMenuItem;
 
 - (void)commit;

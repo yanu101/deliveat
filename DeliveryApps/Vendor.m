@@ -9,5 +9,5 @@
 #import "Vendor.h"
 
 @implementation Vendor
-@synthesize name, description, createdAt, updatedAt, fullAvatarUrl, mediumAvatarUrl, thumbAvatarUrl;
+@synthesize name, description, createdAt, updatedAt, fullAvatarUrl, mediumAvatarUrl, thumbAvatarUrl, dbFullAvatarUrl, dbMediumAvatarUrl, dbThumbAvatarUrl, ID, logoImages, dashboardImages;
 @end

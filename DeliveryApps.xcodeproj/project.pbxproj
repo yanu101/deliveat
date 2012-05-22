@@ -49,6 +49,7 @@
 		04020975153C1F790028462F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402096F153C1F790028462F /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		04020979153C205C0028462F /* Vendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04020978153C205C0028462F /* Vendor.m */; };
 		0402097C153C206E0028462F /* VendorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402097B153C206E0028462F /* VendorParser.m */; };
+		040C897F155D268B004C7B45 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 040C897E155D268B004C7B45 /* divider.png */; };
 		040F563D153E936300DE8231 /* VendorItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F563C153E936300DE8231 /* VendorItemListViewController.m */; };
 		040F5641153E937B00DE8231 /* VendorItemListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F5640153E937B00DE8231 /* VendorItemListCell.m */; };
 		040F5644153EA24100DE8231 /* VendoerMenuItemParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F5643153EA24000DE8231 /* VendoerMenuItemParser.m */; };
@@ -56,6 +57,7 @@
 		0421296D153D493E00BB6FA5 /* VendorDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0421296C153D493E00BB6FA5 /* VendorDashboardViewController.m */; };
 		04212970153D496600BB6FA5 /* VendorDashboardCellTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0421296F153D496600BB6FA5 /* VendorDashboardCellTop.m */; };
 		04212973153D498100BB6FA5 /* VendorDashboardCellSubMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04212972153D498100BB6FA5 /* VendorDashboardCellSubMenu.m */; };
+		043C155D155D094400974924 /* NewHomeMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C155C155D094400974924 /* NewHomeMenuViewController.m */; };
 		04768B1F154695E700F31647 /* NewLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04768B1E154695E700F31647 /* NewLoginViewController.m */; };
 		04768B231546961D00F31647 /* NewLoginCellTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 04768B221546961D00F31647 /* NewLoginCellTop.m */; };
 		04768B291546966500F31647 /* NewLoginCellBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 04768B281546966500F31647 /* NewLoginCellBottom.m */; };
@@ -153,6 +155,17 @@
 		04A00B311547942300EB44E3 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A00AD71547942300EB44E3 /* time.png */; };
 		04A00B321547942300EB44E3 /* time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A00AD81547942300EB44E3 /* time@2x.png */; };
 		04A170E21548E9F800BFAE89 /* TokenParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A170E11548E9F800BFAE89 /* TokenParser.m */; };
+		04AC386B155D17B000843C51 /* MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC386A155D17B000843C51 /* MainMenuCell.m */; };
+		04C99758154EC82B0099655B /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C99757154EC82B0099655B /* star.png */; };
+		04C9975C154ED32D0099655B /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C9975B154ED32D0099655B /* OrderCell.m */; };
+		04C99760154ED5F70099655B /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C9975F154ED5F70099655B /* OrderViewController.m */; };
+		04C997A7154FF7890099655B /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997A6154FF7880099655B /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		04C997AA15500A5D0099655B /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997A915500A5C0099655B /* BaseTableViewController.m */; };
+		04C997AD15500B6D0099655B /* MenuOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997AC15500B6D0099655B /* MenuOrder.m */; };
+		04C997B315500B9F0099655B /* MenuOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997B215500B9F0099655B /* MenuOrderItem.m */; };
+		04C997BA15501B3E0099655B /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997B915501B3E0099655B /* CartViewController.m */; };
+		04C997BD15501F7F0099655B /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997BC15501F7F0099655B /* CartCell.m */; };
+		04C997C01550201D0099655B /* TotalCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C997BF1550201D0099655B /* TotalCartCell.m */; };
 		04FDA6AD154BB8A6003B853C /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04FDA6AB154BB8A5003B853C /* TestModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -239,6 +252,7 @@
 		04020978153C205C0028462F /* Vendor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vendor.m; sourceTree = "<group>"; };
 		0402097A153C206E0028462F /* VendorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorParser.h; sourceTree = "<group>"; };
 		0402097B153C206E0028462F /* VendorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorParser.m; sourceTree = "<group>"; };
+		040C897E155D268B004C7B45 /* divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divider.png; sourceTree = "<group>"; };
 		040F563B153E936300DE8231 /* VendorItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorItemListViewController.h; sourceTree = "<group>"; };
 		040F563C153E936300DE8231 /* VendorItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorItemListViewController.m; sourceTree = "<group>"; };
 		040F563F153E937A00DE8231 /* VendorItemListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorItemListCell.h; sourceTree = "<group>"; };
@@ -253,6 +267,8 @@
 		0421296F153D496600BB6FA5 /* VendorDashboardCellTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorDashboardCellTop.m; sourceTree = "<group>"; };
 		04212971153D498100BB6FA5 /* VendorDashboardCellSubMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorDashboardCellSubMenu.h; sourceTree = "<group>"; };
 		04212972153D498100BB6FA5 /* VendorDashboardCellSubMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorDashboardCellSubMenu.m; sourceTree = "<group>"; };
+		043C155B155D094400974924 /* NewHomeMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewHomeMenuViewController.h; sourceTree = "<group>"; };
+		043C155C155D094400974924 /* NewHomeMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewHomeMenuViewController.m; sourceTree = "<group>"; };
 		04768B1D154695E600F31647 /* NewLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLoginViewController.h; sourceTree = "<group>"; };
 		04768B1E154695E700F31647 /* NewLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLoginViewController.m; sourceTree = "<group>"; };
 		04768B211546961D00F31647 /* NewLoginCellTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLoginCellTop.h; sourceTree = "<group>"; };
@@ -356,6 +372,27 @@
 		04A00AD81547942300EB44E3 /* time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@2x.png"; sourceTree = "<group>"; };
 		04A170E01548E9F800BFAE89 /* TokenParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenParser.h; sourceTree = "<group>"; };
 		04A170E11548E9F800BFAE89 /* TokenParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenParser.m; sourceTree = "<group>"; };
+		04AC3869155D17B000843C51 /* MainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuCell.h; sourceTree = "<group>"; };
+		04AC386A155D17B000843C51 /* MainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuCell.m; sourceTree = "<group>"; };
+		04C99757154EC82B0099655B /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		04C9975A154ED32D0099655B /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		04C9975B154ED32D0099655B /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		04C9975E154ED5F70099655B /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		04C9975F154ED5F70099655B /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		04C997A5154FF7880099655B /* iToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iToast.h; sourceTree = "<group>"; };
+		04C997A6154FF7880099655B /* iToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iToast.m; sourceTree = "<group>"; };
+		04C997A815500A5C0099655B /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		04C997A915500A5C0099655B /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		04C997AB15500B6D0099655B /* MenuOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuOrder.h; sourceTree = "<group>"; };
+		04C997AC15500B6D0099655B /* MenuOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuOrder.m; sourceTree = "<group>"; };
+		04C997B115500B9F0099655B /* MenuOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuOrderItem.h; sourceTree = "<group>"; };
+		04C997B215500B9F0099655B /* MenuOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuOrderItem.m; sourceTree = "<group>"; };
+		04C997B815501B3E0099655B /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		04C997B915501B3E0099655B /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		04C997BB15501F7F0099655B /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
+		04C997BC15501F7F0099655B /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
+		04C997BE1550201D0099655B /* TotalCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalCartCell.h; sourceTree = "<group>"; };
+		04C997BF1550201D0099655B /* TotalCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalCartCell.m; sourceTree = "<group>"; };
 		04FDA6AC154BB8A6003B853C /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,12 +474,16 @@
 		040208EA1536A6C90028462F /* screen */ = {
 			isa = PBXGroup;
 			children = (
+				04C997B4155018FB0099655B /* cart */,
+				04C9975D154ED5E30099655B /* order */,
 				04212969153D491100BB6FA5 /* vendor_dashboard */,
 				040209471538CCD70028462F /* menu */,
 				0402093F1537BAED0028462F /* home */,
 				040209381537ADAF0028462F /* registration */,
 				040208F71536EC0D0028462F /* main */,
 				040208EC1536A6D60028462F /* login */,
+				04C997A815500A5C0099655B /* BaseTableViewController.h */,
+				04C997A915500A5C0099655B /* BaseTableViewController.m */,
 			);
 			name = screen;
 			sourceTree = "<group>";
@@ -495,6 +536,14 @@
 				04768B281546966500F31647 /* NewLoginCellBottom.m */,
 				04768B311546A62B00F31647 /* NewRegistrationCell.h */,
 				04768B321546A62B00F31647 /* NewRegistrationCell.m */,
+				04C9975A154ED32D0099655B /* OrderCell.h */,
+				04C9975B154ED32D0099655B /* OrderCell.m */,
+				04C997BB15501F7F0099655B /* CartCell.h */,
+				04C997BC15501F7F0099655B /* CartCell.m */,
+				04C997BE1550201D0099655B /* TotalCartCell.h */,
+				04C997BF1550201D0099655B /* TotalCartCell.m */,
+				04AC3869155D17B000843C51 /* MainMenuCell.h */,
+				04AC386A155D17B000843C51 /* MainMenuCell.m */,
 			);
 			name = component;
 			sourceTree = "<group>";
@@ -502,6 +551,8 @@
 		040208FC1536EEA00028462F /* util */ = {
 			isa = PBXGroup;
 			children = (
+				04C997A5154FF7880099655B /* iToast.h */,
+				04C997A6154FF7880099655B /* iToast.m */,
 				04020962153C1F480028462F /* JSON */,
 				0402095F153C09590028462F /* MBProgressHUD.h */,
 				04020960153C095A0028462F /* MBProgressHUD.m */,
@@ -565,6 +616,8 @@
 			children = (
 				040209411537BB190028462F /* HomeViewController.h */,
 				040209421537BB190028462F /* HomeViewController.m */,
+				043C155B155D094400974924 /* NewHomeMenuViewController.h */,
+				043C155C155D094400974924 /* NewHomeMenuViewController.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -576,6 +629,10 @@
 				04020978153C205C0028462F /* Vendor.m */,
 				040F5645153EA24F00DE8231 /* VendorMenuItem.h */,
 				040F5646153EA24F00DE8231 /* VendorMenuItem.m */,
+				04C997AB15500B6D0099655B /* MenuOrder.h */,
+				04C997AC15500B6D0099655B /* MenuOrder.m */,
+				04C997B115500B9F0099655B /* MenuOrderItem.h */,
+				04C997B215500B9F0099655B /* MenuOrderItem.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -638,6 +695,8 @@
 		04A00A7E1547942300EB44E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				040C897E155D268B004C7B45 /* divider.png */,
+				04C99757154EC82B0099655B /* star.png */,
 				04A00A7F1547942300EB44E3 /* back-button.png */,
 				04A00A801547942300EB44E3 /* back-button@2x.png */,
 				04A00A811547942300EB44E3 /* button-pressed.png */,
@@ -730,6 +789,24 @@
 				04A00AD81547942300EB44E3 /* time@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		04C9975D154ED5E30099655B /* order */ = {
+			isa = PBXGroup;
+			children = (
+				04C9975E154ED5F70099655B /* OrderViewController.h */,
+				04C9975F154ED5F70099655B /* OrderViewController.m */,
+			);
+			name = order;
+			sourceTree = "<group>";
+		};
+		04C997B4155018FB0099655B /* cart */ = {
+			isa = PBXGroup;
+			children = (
+				04C997B815501B3E0099655B /* CartViewController.h */,
+				04C997B915501B3E0099655B /* CartViewController.m */,
+			);
+			name = cart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -875,6 +952,8 @@
 				04A00B301547942300EB44E3 /* tabbar@2x.png in Resources */,
 				04A00B311547942300EB44E3 /* time.png in Resources */,
 				04A00B321547942300EB44E3 /* time@2x.png in Resources */,
+				04C99758154EC82B0099655B /* star.png in Resources */,
+				040C897F155D268B004C7B45 /* divider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +1014,17 @@
 				04768B331546A62B00F31647 /* NewRegistrationCell.m in Sources */,
 				04A170E21548E9F800BFAE89 /* TokenParser.m in Sources */,
 				04FDA6AD154BB8A6003B853C /* TestModel.xcdatamodeld in Sources */,
+				04C9975C154ED32D0099655B /* OrderCell.m in Sources */,
+				04C99760154ED5F70099655B /* OrderViewController.m in Sources */,
+				04C997A7154FF7890099655B /* iToast.m in Sources */,
+				04C997AA15500A5D0099655B /* BaseTableViewController.m in Sources */,
+				04C997AD15500B6D0099655B /* MenuOrder.m in Sources */,
+				04C997B315500B9F0099655B /* MenuOrderItem.m in Sources */,
+				04C997BA15501B3E0099655B /* CartViewController.m in Sources */,
+				04C997BD15501F7F0099655B /* CartCell.m in Sources */,
+				04C997C01550201D0099655B /* TotalCartCell.m in Sources */,
+				043C155D155D094400974924 /* NewHomeMenuViewController.m in Sources */,
+				04AC386B155D17B000843C51 /* MainMenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

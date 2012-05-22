@@ -11,11 +11,11 @@
 #import "ImageRuntimeStorage.h"
 #import "AppFactory.h"
 #import "AppDelegate.h"
-
-#define LABEL_HEIGHT 21
+#import <QuartzCore/QuartzCore.h>
+#define LABEL_HEIGHT (HEIGHT_CELL_ITEM - HEIGHT_AVATAR_IMAGE_ITEM)
 @implementation BuddyItem
 
-@synthesize avatarImageButton, labelName, delegate, vendor;
+@synthesize avatarImageButton, labelName, delegate, vendor, tableView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -24,19 +24,51 @@
     if (self) {
         avatarImageButton = [[UIButton alloc] init];
         [avatarImageButton setBackgroundImage:[UIImage imageNamed:@"defaultIcon.png"] forState:UIControlStateNormal];
+        avatarImageButton.backgroundColor = [UIColor whiteColor];
         [avatarImageButton addTarget:self action:@selector(avatarImageButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        avatarImageButton.backgroundColor = [UIColor clearColor];
+//        avatarImageButton.backgroundColor = [UIColor clearColor];
         labelName = [[UILabel alloc] init];
         labelName.font = [UIFont systemFontOfSize:14];
-        labelName.backgroundColor = [UIColor clearColor];
+        labelName.backgroundColor = [UIColor blackColor];
+        labelName.textColor = [UIColor whiteColor];
         labelName.textAlignment = UITextAlignmentCenter;
+//        myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+//        [self addSubview:myImageView];
         [self addSubview:avatarImageButton];
+//        [avatarImageButton layer].cornerRadius = 7;
+//        avatarImageButton.clipsToBounds = YES;
         [self addSubview:labelName];
+        
+        
         
     }
     return self;
 }
 
+//-(void) drawRect:(CGRect)rect {
+//    UIGraphicsBeginImageContext(self.frame.size);
+//    
+//    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+//    CGContextSetLineWidth(currentContext, 1.0); //or whatever width you want
+//    CGContextSetRGBStrokeColor(currentContext, 0.6, 0.6, .6, 1.0);
+//    
+//    CGRect myRect = CGContextGetClipBoundingBox(currentContext);  
+//    //printf("rect = %f,%f,%f,%f\n", myRect.origin.x, myRect.origin.y, myRect.size.width, myRect.size.height);
+//    
+//    float myShadowColorValues[] = {0,0,0,1};
+//    CGColorSpaceRef myColorSpace = CGColorSpaceCreateDeviceRGB();
+//    CGColorRef colorRef = CGColorCreate(myColorSpace, myShadowColorValues);
+//    CGContextSetShadowWithColor(currentContext, CGSizeMake(0, -1), 3, colorRef);
+//    // CGContextSetShadow(currentContext, CGSizeMake(0, -1), 3);
+//    
+//    CGContextStrokeRect(currentContext, myRect);
+//    UIImage *backgroundImage = (UIImage *)UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    [myImageView setImage:backgroundImage];
+//    
+//    
+//    UIGraphicsEndImageContext();
+//}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -72,7 +104,7 @@
     ImageRuntimeStorage *imgRuntimeStg = [appFactory getImageRuntimeStorage];
     
     
-    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:self.vendor.thumbAvatarUrl andImageType:0 andDelegate:self];
+    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:self.vendor.dbThumbAvatarUrl andImageType:0 andDelegate:self];
     if(dataImg) {
         UIImage* img = [UIImage imageWithData:dataImg];
         [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
@@ -81,6 +113,9 @@
 - (void)imageFetched:(NSData *)imageData {
     UIImage* img = [UIImage imageWithData:imageData];
     [avatarImageButton setBackgroundImage:img forState:UIControlStateNormal];
+    if(self.tableView) {
+        [self.tableView reloadData];
+    }
     
 }
 @end

@@ -1,19 +1,19 @@
 //
-//  VendorItemListCell.m
+//  OrderCell.m
 //  DeliveryApps
 //
-//  Created by Yanuar Rahman on 4/18/12.
+//  Created by Yanuar Rahman on 4/30/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "VendorItemListCell.h"
-
+#import "OrderCell.h"
 #import "AppFactory.h"
 #import "AppDelegate.h"
 #import "ImageRuntimeStorage.h"
-#import "VendorMenuItem.h"
-@implementation VendorItemListCell
-@synthesize image, name, desc, vendorMenuItem, star, price;
+
+@implementation OrderCell
+@synthesize image, desc, buttonSelectNumOfOrder, title, picker, labelNumOf, urlImage;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -29,22 +29,23 @@
 
     // Configure the view for the selected state
 }
-- (void)commit {
+- (void) commit {
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     AppFactory* appFactory = [appDelegate getAppFactory];
     
     ImageRuntimeStorage *imgRuntimeStg = [appFactory getImageRuntimeStorage];
     
     
-    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:vendorMenuItem.thumbUrl andImageType:0 andDelegate:self];
+    NSData* dataImg = [imgRuntimeStg getImageWithImageURL:urlImage andImageType:0 andDelegate:self];
     if(dataImg) {
         UIImage* img = [UIImage imageWithData:dataImg];
-        image.image = img;
+        [image setImage:img];
+        
     }
 }
 - (void)imageFetched:(NSData *)imageData {
     UIImage* img = [UIImage imageWithData:imageData];
-    image.image = img;
+    [image setImage:img];
     
 }
 @end

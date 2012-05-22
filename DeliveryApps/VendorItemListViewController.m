@@ -10,6 +10,7 @@
 #import "Vendor.h"
 #import "VendorItemListCell.h"
 #import "VendorMenuItem.h"
+#import "OrderViewController.h"
 
 @interface VendorItemListViewController ()
 
@@ -30,8 +31,8 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
-    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
+//    self.tableView.backgroundColor = [UIColor clearColor];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -67,14 +68,52 @@
     // Return the number of rows in the section.
     return [self.items count];
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    VendorItemListCell *cell = (VendorItemListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    VendorMenuItem *vmi = [self.items objectAtIndex:indexPath.row];
+//    cell.name.text = vmi.name;
+    
+    CGSize  textSize = { 220.0, 10000.0 };
+    
+	CGSize size = [vmi.desc sizeWithFont:[UIFont boldSystemFontOfSize:13]
+                       constrainedToSize:textSize 
+                           lineBreakMode:UILineBreakModeClip];
+    int normalHeight = PADDING*2 + MARGIN_TEXT*3 + TITLE_HEIGHT*3 + STAR_IMAGE_HEIGHT;
+    int expectedHeight = PADDING*2 + MARGIN_TEXT*3 + TITLE_HEIGHT*2 + size.height + STAR_IMAGE_HEIGHT;//MARGIN*3 + TITLE_HEIGHT + size.height;
+    return MAX(normalHeight, expectedHeight);
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     VendorItemListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     VendorMenuItem *vmi = [self.items objectAtIndex:indexPath.row];
     cell.name.text = vmi.name;
+    
+    CGSize  textSize = { 220.0, 10000.0 };
+    
+	CGSize size = [vmi.desc sizeWithFont:[UIFont boldSystemFontOfSize:13]
+					  constrainedToSize:textSize 
+						  lineBreakMode:UILineBreakModeClip];
+    NSLog(@"Frame : %f, %f", cell.desc.frame.size.width, cell.desc.frame.size.height);
+    cell.desc.frame = CGRectMake(cell.desc.frame.origin.x, cell.desc.frame.origin.y, cell.desc.frame.size.width, size.height);
+    NSLog(@"Frame : %f, %f", cell.desc.frame.size.width, cell.desc.frame.size.height);
+    cell.desc.font = [UIFont systemFontOfSize:13];
+    cell.desc.numberOfLines = 0;
+    
+    cell.price.frame = CGRectMake(cell.price.frame.origin.x, cell.desc.frame.origin.y + size.height + MARGIN_TEXT, cell.price.frame.size.width, cell.price.frame.size.height);
+    
+//    [cell.desc sizeToFit];
+//    [cell layoutSubviews];
+    NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
+    NSNumber *score = [[NSNumber alloc] initWithDouble:vmi.price];
+    [numFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+    
+    
+    cell.price.text = [numFormatter stringFromNumber: score];
     cell.desc.text = vmi.desc;
+    
     cell.vendorMenuItem = vmi;
     [cell commit];
     // Configure the cell...
@@ -133,5 +172,17 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"OrderSegue"]) {
+        NSIndexPath* index = [self.tableView indexPathForSelectedRow];
+        VendorMenuItem *vmi = [self.items objectAtIndex:index.row];
+        NSLog(@" vmi.vendor = self.vendor %@", self.vendor);
+        vmi.vendor = self.vendor;
+        OrderViewController* ovc = segue.destinationViewController;
+        ovc.vendorMenuItem = vmi;
+        
+        NSLog(@"Index Row : %d", index.row);
+//        NSIndexPath* index = [NSIndexPath indexPathForRow:<#(NSInteger)#> inSection:<#(NSInteger)#>]
+    }
+}
 @end

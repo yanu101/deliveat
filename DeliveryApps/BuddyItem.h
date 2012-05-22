@@ -12,11 +12,14 @@
 #import "Vendor.h"
 @interface BuddyItem : UIView<IComponent, IImageRuntimeStorageListener> {
     id cookie;
+    UIImageView *myImageView;
 }
 @property (strong, nonatomic) id<IFieldChangeListener> delegate;
 @property (strong, nonatomic) IBOutlet UIButton* avatarImageButton;
 @property (strong, nonatomic) IBOutlet UILabel *labelName;
 @property (strong, nonatomic) Vendor* vendor;
+@property (strong, nonatomic) UITableView* tableView;
+
 
 - (void) commit;
 @end

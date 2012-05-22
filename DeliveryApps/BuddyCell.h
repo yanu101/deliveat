@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) NSMutableArray* dataCollection;
 @property (strong, nonatomic) id delegate;
+@property (strong, nonatomic) UITableView* tableView;
 - (void)buildUI;
 @end

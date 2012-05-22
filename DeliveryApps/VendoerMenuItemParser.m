@@ -28,6 +28,12 @@
 }
 + (VendorMenuItem*) getVendorItem:(NSDictionary*)dictPayload {
     
+    int ID;
+    if([dictPayload objectForKey:@"id"]) {
+        ID = [[Utility decodeEntities:[dictPayload objectForKey:@"id"]] intValue];
+    }
+    NSLog(@"Item ID %d", ID);
+    
     NSString* name;
     if([dictPayload objectForKey:@"name"]) {
         name = [Utility decodeEntities:[dictPayload objectForKey:@"name"]];
@@ -59,9 +65,10 @@
     //    NSDate* updatedAt = [NSDate dateWithTimeIntervalSince1970:timeStampUpdatedAt];
     
     VendorMenuItem* vendorMenuItem = [[VendorMenuItem alloc] init];
-    
+    vendorMenuItem.ID = ID;
     vendorMenuItem.name = name;
-    vendorMenuItem.desc = desc;
+    vendorMenuItem.price = 50000;
+    vendorMenuItem.desc = [NSString stringWithFormat:@"%@ ajshdjahsd jahsdjhasd jahsdjhasd yanuar", desc];//desc;
     vendorMenuItem.thumbUrl = [Utility decodeEntities:[avatar_url objectForKey:@"thumb"]];
     return vendorMenuItem;
 }

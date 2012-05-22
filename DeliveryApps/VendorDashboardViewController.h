@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Protocols.h"
+#import "BaseTableViewController.h"
 @class Vendor;
 @class MBProgressHUD;
 @class APIThread;
-@interface VendorDashboardViewController : UITableViewController<IAPIThread> {
+@interface VendorDashboardViewController : BaseTableViewController<IAPIThread> {
     MBProgressHUD *loading;
     APIThread *getMenuItemThread;
 }

@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface TokenParser : NSObject
-
++ (NSString*) getToken:(NSString*)payload;
 @end

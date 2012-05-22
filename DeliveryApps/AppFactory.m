@@ -12,9 +12,17 @@
 #import "APIThread.h"
 #import "API.h"
 #import "Util.h"
-@implementation AppFactory
-@synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary, vendors, token;
+#import "MenuOrder.h"
+#import "MenuOrderItem.h"
 
+@implementation AppFactory
+@synthesize imageRuntimeStorage, api, apiThread, util, resource, messageDictionary, vendors, token, menuOrder;
+
+- (void) resetMenuOrder {
+    self.menuOrder = [[MenuOrder alloc] init];
+    self.menuOrder.menuOrderItems = [[NSMutableArray alloc] init];
+    messageDictionary = [[NSMutableDictionary alloc] init];
+}
 - (ImageRuntimeStorage*) getImageRuntimeStorage {
     if(!imageRuntimeStorage) {
         imageRuntimeStorage = [[ImageRuntimeStorage alloc] init];

@@ -30,6 +30,12 @@
 }
 + (Vendor*) getVendor:(NSDictionary*)dictPayload {
 
+    int ID;
+    if([dictPayload objectForKey:@"id"]) {
+        ID = [[Utility decodeEntities:[dictPayload objectForKey:@"id"]] intValue];
+    }
+    NSLog(@"Vendor ID %d", ID);
+    
     NSString* name;
     if([dictPayload objectForKey:@"name"]) {
         name = [Utility decodeEntities:[dictPayload objectForKey:@"name"]];
@@ -41,10 +47,13 @@
     }
     NSLog(@"Desc : %@", desc);
     NSDictionary* avatar_url;
+    NSDictionary* dashboard_url;
     if([dictPayload objectForKey:@"logo_image"]) {
         avatar_url = [dictPayload objectForKey:@"logo_image"];
     }
-    
+    if([dictPayload objectForKey:@"dashboard_image"]) {
+        dashboard_url = [dictPayload objectForKey:@"dashboard_image"];
+    }
 //    double timeStampCreatedAt;
 //    if([dictPayload objectForKey:@"created_at"]) {
 //        NSString* times = [dictPayload objectForKey:@"created_at"];
@@ -63,7 +72,7 @@
 //    NSDate* updatedAt = [NSDate dateWithTimeIntervalSince1970:timeStampUpdatedAt];
     
     Vendor* vendor = [[Vendor alloc] init];
-    
+    vendor.ID = ID;
     vendor.name = name;
     vendor.description = desc;
 //    vendor.createdAt = createdAt;
@@ -71,6 +80,10 @@
     vendor.fullAvatarUrl = [Utility decodeEntities:[avatar_url objectForKey:@"full"]];
     vendor.mediumAvatarUrl = [Utility decodeEntities:[avatar_url objectForKey:@"medium"]];
     vendor.thumbAvatarUrl = [Utility decodeEntities:[avatar_url objectForKey:@"thumb"]];
+    
+    vendor.dbFullAvatarUrl = [Utility decodeEntities:[dashboard_url objectForKey:@"full"]];
+    vendor.dbMediumAvatarUrl = [Utility decodeEntities:[dashboard_url objectForKey:@"medium"]];
+    vendor.dbThumbAvatarUrl = [Utility decodeEntities:[dashboard_url objectForKey:@"thumb"]];
     NSLog(@"\n\n");
     return vendor;
 }

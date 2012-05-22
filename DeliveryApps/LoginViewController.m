@@ -87,7 +87,6 @@ APIThread* getVendorThread;
 //{
 //    return NO;
 //}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];

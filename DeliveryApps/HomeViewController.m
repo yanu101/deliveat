@@ -12,6 +12,8 @@
 #import "VendorDashboardViewController.h"
 #import "AppFactory.h"
 #import "AppDelegate.h"
+#import "MainMenuCell.h"
+#import "Vendor.h"
 
 @interface HomeViewController ()
 
@@ -36,10 +38,11 @@ int n = 0;
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     AppFactory* appFactory = [appDelegate getAppFactory];
     dataCollection = appFactory.vendors;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+//    self.tableView.separatorColor = [UIColor redColor];
     
-    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
-    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"leather-background.png"]]; 
+//    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidUnload
@@ -67,32 +70,72 @@ int n = 0;
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 6;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    n = [dataCollection count];
-    int modulo = n % 2;
-    int div = [dataCollection count]/2;
-    int h = (HEIGHT_CELL_ITEM+BUDDY_ITEM_MARGIN) * (modulo == 0 ? div : div + 1);
-    h+=BUDDY_ITEM_MARGIN;
-    return h==0?HEIGHT_CELL_ITEM : h;
+    if(indexPath.row == 0) {
+        n = 4;//[dataCollection count];
+        int modulo = n % 2;
+        int div = [dataCollection count]/2;
+        int h = (HEIGHT_CELL_ITEM+BUDDY_ITEM_MARGIN) * (modulo == 0 ? div : div + 1);
+        h+=BUDDY_ITEM_MARGIN;
+        return h==0?HEIGHT_CELL_ITEM+7 : h+7;
+    }
+    return 64;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BuddyCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    BuddyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.delegate = self;
-    cell.dataCollection = self.dataCollection;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.clipsToBounds = NO;
-    cell.contentView.clipsToBounds = NO;
-    [cell buildUI];
-    [cell layoutSubviews];
-    // Configure the cell...
     
-    return cell;
+    if(indexPath.row == 0) {
+        static NSString *CellIdentifier = @"BuddyCell";
+        BuddyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.delegate = self;
+        cell.dataCollection = self.dataCollection;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.clipsToBounds = NO;
+        cell.contentView.clipsToBounds = NO;
+        [cell buildUI];
+        [cell layoutSubviews];
+        
+        n = 4;//[dataCollection count];
+        int modulo = n % 2;
+        int div = [dataCollection count]/2;
+        int h = (HEIGHT_CELL_ITEM+BUDDY_ITEM_MARGIN) * (modulo == 0 ? div : div + 1);
+        h+=BUDDY_ITEM_MARGIN;
+        
+        UIImageView *sep = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider"]];
+        sep.frame = CGRectMake(0, h, 320, 7);
+        [cell addSubview:sep];
+        
+        // Configure the cell...
+        
+        return cell;
+    } else {
+        static NSString *CellIdentifier = @"MainMenuCell";
+        MainMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.delegate = self;
+        NSInteger index = indexPath.row;
+        NSLog(@"\n\nINDEX : %d\n\n", (index-1));
+        Vendor *vendor = [self.dataCollection objectAtIndex:(index-1)];
+        cell.vendor = vendor;
+        
+//        cell.dataCollection = self.dataCollection;
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.clipsToBounds = NO;
+//        cell.contentView.clipsToBounds = NO;
+        [cell commit];
+        UIImageView *sep = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider"]];
+        sep.frame = CGRectMake(0, 57, 320, 7);
+        [cell addSubview:sep];
+                               
+//        [cell layoutSubviews];
+        // Configure the cell...
+        
+        return cell;
+    }
+    
 }
 
 /*
@@ -138,6 +181,10 @@ int n = 0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Vendor *vendor = [self.dataCollection objectAtIndex:indexPath.row-1];
+    
+    [self performSegueWithIdentifier:@"VendorDashboard" sender:vendor];
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
